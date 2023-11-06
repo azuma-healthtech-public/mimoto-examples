@@ -27,6 +27,7 @@ function OidcInner(props: { config: ExampleOidcConfig }) {
       <h3>{props.config.description}</h3>
       <div>authority: {props.config.authority}</div>
       <div>client id: {props.config.client_id}</div>
+      <div>redirect uri: {props.config.redirect_uri}</div>
 
       {auth.error && <div>Something went wrong... {auth?.error?.message}</div>}
 

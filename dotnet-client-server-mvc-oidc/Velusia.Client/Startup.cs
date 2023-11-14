@@ -8,6 +8,7 @@ using Quartz;
 using System;
 using System.IO;
 using Velusia.Client.Models;
+using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace Velusia.Client;
 
@@ -101,11 +102,11 @@ public class Startup
                 // Add a client registration matching the client application definition in the server project.
                 options.AddRegistration(new OpenIddictClientRegistration
                 {
-                    Issuer = new Uri("https://mimoto-test.pie.azuma-health.tech", UriKind.Absolute),
+                    Issuer = new Uri("https://localhost:44313/", UriKind.Absolute),
 
-                    ClientId = "5b290635-fe7e-425e-9611-1bd15e34f22e",
-                    ClientSecret = "6zqWcl6JKaKasd123yYmFouKKUOUPFfkNppU",
-                    Scopes = { "openid", "urn:telematik:versicherter", "urn:telematik:display_name" },
+                    ClientId = "mvc",
+                    ClientSecret = "901564A5-E7FE-42CB-B10D-61EF6A8F3654",
+                    Scopes = { Scopes.Email, Scopes.Profile },
 
                     // Note: to mitigate mix-up attacks, it's recommended to use a unique redirection endpoint
                     // URI per provider, unless all the registered providers support returning a special "iss"
@@ -131,7 +132,6 @@ public class Startup
     {
         app.UseDeveloperExceptionPage();
 
-        app.UseDefaultFiles();
         app.UseStaticFiles();
 
         app.UseRouting();

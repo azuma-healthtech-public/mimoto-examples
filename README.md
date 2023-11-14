@@ -4,11 +4,23 @@ Repository containing mimoto integration examples
 ## react-oidc
 This example uses https://www.npmjs.com/package/react-oidc-context to show simple react integration examples. 
 
-## dotnet-mvc-oidc
+## dotnet-client-mvc-oidc
 This example was forked from https://github.com/openiddict/openiddict-samples/tree/dev/samples/Velusia/Velusia.Client and configuration extended for mimoto.
 
 General Idea:
-ASP.Net Core MVC application has login via Mimoto (integrated via openiddict).
+ASP.NET Core MVC application has login via authorization code flow against mimoto (integrated via openiddict).
+
+## dotnet-client-server-mvc-oidc
+This example was forked from https://github.com/openiddict/openiddict-samples/tree/dev/samples/Velusia and configuration extended for mimoto.
+
+General Idea:
+ASP.NET Core MVC application has login via authorization code flow against ASP.NET Core Authorization Server, which integrates mimoto (via authorization code flow).
+
+## dotnet-server-mvc-oidc
+This example was forked from https://github.com/openiddict/openiddict-samples/tree/dev/samples/Velusia/Velusia.Server and configuration extended for mimoto.
+
+General Idea:
+ASP.NET Core Authorization Server, which integrates mimoto (via authorization code flow). Can be used from react or android apps.
 
 ## ...
 More coming soon.

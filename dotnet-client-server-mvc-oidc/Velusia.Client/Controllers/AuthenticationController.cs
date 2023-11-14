@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using OpenIddict.Abstractions;
 using OpenIddict.Client.AspNetCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -46,7 +47,20 @@ public class AuthenticationController : Controller
         // authentication options shouldn't be used, a specific scheme can be specified here.
         await HttpContext.SignOutAsync();
 
-        return Redirect(Url.IsLocalUrl(returnUrl) ? returnUrl : "/");
+        var properties = new AuthenticationProperties(new Dictionary<string, string>
+        {
+            // While not required, the specification encourages sending an id_token_hint
+            // parameter containing an identity token returned by the server for this user.
+            [OpenIddictClientAspNetCoreConstants.Properties.IdentityTokenHint] =
+                result.Properties.GetTokenValue(OpenIddictClientAspNetCoreConstants.Tokens.BackchannelIdentityToken)
+        })
+        {
+            // Only allow local return URLs to prevent open redirect attacks.
+            RedirectUri = Url.IsLocalUrl(returnUrl) ? returnUrl : "/"
+        };
+
+        // Ask the OpenIddict client middleware to redirect the user agent to the identity provider.
+        return SignOut(properties, OpenIddictClientAspNetCoreDefaults.AuthenticationScheme);
     }
 
     // Note: this controller uses the same callback action for all providers
@@ -96,7 +110,6 @@ public class AuthenticationController : Controller
         // Map needed claims 
         identity.SetClaim(ClaimTypes.Email, result.Principal.GetClaim("urn:telematik:claims:email"))
                 .SetClaim(ClaimTypes.Name, result.Principal.GetClaim(ClaimTypes.Name))
-                .SetClaim(ClaimTypes.NameIdentifier, result.Principal.GetClaim(ClaimTypes.NameIdentifier))
                 .SetClaim("urn:telematik:claims:display_name", result.Principal.GetClaim("urn:telematik:claims:display_name"))
                 .SetClaim("urn:telematik:claims:id", result.Principal.GetClaim("urn:telematik:claims:id"));
 
@@ -131,5 +144,21 @@ public class AuthenticationController : Controller
         // For scenarios where the default sign-in handler configured in the ASP.NET Core
         // authentication options shouldn't be used, a specific scheme can be specified here.
         return SignIn(new ClaimsPrincipal(identity), properties);
+    }
+
+    // Note: this controller uses the same callback action for all providers
+    // but for users who prefer using a different action per provider,
+    // the following action can be split into separate actions.
+    [HttpGet("~/callback/logout/{provider}"), HttpPost("~/callback/logout/{provider}"), IgnoreAntiforgeryToken]
+    public async Task<ActionResult> LogOutCallback()
+    {
+        // Retrieve the data stored by OpenIddict in the state token created when the logout was triggered.
+        var result = await HttpContext.AuthenticateAsync(OpenIddictClientAspNetCoreDefaults.AuthenticationScheme);
+
+        // In this sample, the local authentication cookie is always removed before the user agent is redirected
+        // to the authorization server. Applications that prefer delaying the removal of the local cookie can
+        // remove the corresponding code from the logout action and remove the authentication cookie in this action.
+
+        return Redirect(result!.Properties!.RedirectUri);
     }
 }

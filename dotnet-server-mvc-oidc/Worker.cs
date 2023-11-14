@@ -25,22 +25,22 @@ public class Worker : IHostedService
 
         var manager = scope.ServiceProvider.GetRequiredService<IOpenIddictApplicationManager>();
 
-        if (await manager.FindByClientIdAsync("5231564A5-E7FE-42CB-B10D-61EF6A8F3654") == null)
+        if (await manager.FindByClientIdAsync("6231564A5-E7FE-42CB-B10D-61EF6A8F3654") == null)
         {
             await manager.CreateAsync(new OpenIddictApplicationDescriptor
             {
-                ClientId = "5231564A5-E7FE-42CB-B10D-61EF6A8F3654",
+                ClientId = "6231564A5-E7FE-42CB-B10D-61EF6A8F3654",
                 ConsentType = ConsentTypes.Explicit,
                 DisplayName = "Login",
                 RedirectUris =
                 {
                     new Uri("http://localhost:1234/oidc/signin/oidc-dotnet-server-mvc-oidc"),
-                    new Uri("https://zealous-stone-0ec781310.4.azurestaticapps.net//oidc/signin/oidc-dotnet-server-mvc-oidc")
+                    new Uri("https://zealous-stone-0ec781310.4.azurestaticapps.net/oidc/signin/oidc-dotnet-server-mvc-oidc")
                 },
                 PostLogoutRedirectUris =
                 {
                     new Uri("http://localhost:1234/oidc/signin/oidc-dotnet-server-mvc-oidc"),
-                    new Uri("https://zealous-stone-0ec781310.4.azurestaticapps.net//oidc/signin/oidc-dotnet-server-mvc-oidc")
+                    new Uri("https://zealous-stone-0ec781310.4.azurestaticapps.net/oidc/signin/oidc-dotnet-server-mvc-oidc")
                 },
                 Permissions =
                 {

@@ -68,7 +68,7 @@ export const exampleConfigs: ExampleOidcConfig[] = [
     description: "OIDC flow via dotnet-server-mvc-oidc example (needs to be started locally)",
     redirect_uri: `${baseHostUrl}/oidc/signin/oidc-dotnet-server-mvc-oidc`,
     authority: "https://localhost:44313",
-    client_id: "5231564A5-E7FE-42CB-B10D-61EF6A8F3654",
+    client_id: "6231564A5-E7FE-42CB-B10D-61EF6A8F3654",
     scope: "openid",
     executeLogout: true,
     supportLoginParams: false

@@ -43,6 +43,8 @@ function OidcInner(props: { config: ExampleOidcConfig }) {
               <button onClick={() => void auth.signinRedirect()}>Log in</button>
               <br />
               <br />
+                {props.config.supportLoginParams &&
+                    <>
               <button
                 onClick={() =>
                   void auth.signinRedirect({
@@ -80,12 +82,20 @@ function OidcInner(props: { config: ExampleOidcConfig }) {
               >
                 Log in with gematik
               </button>
+                    </>
+                }
             </div>
           )}
           {auth.isAuthenticated && (
             <div>
               <Token />
-              <button onClick={() => void auth.removeUser()}>Log out</button>
+              <button onClick={(ev) => {
+                  ev.preventDefault();
+                  if(props.config.executeLogout === true)
+                      auth.signoutRedirect();
+                  else
+                      auth.removeUser()
+              }}>Log out</button>
             </div>
           )}
         </div>

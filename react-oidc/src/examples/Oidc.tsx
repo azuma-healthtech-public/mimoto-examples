@@ -3,13 +3,19 @@ import { Card, Divider, Spin } from "antd";
 import { AuthProvider, useAuth } from "react-oidc-context";
 import { ExampleOidcConfig } from "../config/OidcConfig";
 import Token from "../components/Token";
+import {OidcMetadata} from "oidc-client-ts";
 
 export default function Oidc(props: { config: ExampleOidcConfig }) {
+    let metadata = undefined;
+    if( props.config.tokenUrl && props.config.authorizeUrl){
+        metadata = {issuer: props.config.authority, token_endpoint: props.config.tokenUrl, authorization_endpoint: props.config.authorizeUrl};
+    }
   return (
     <AuthProvider
       key={props.config.path}
       scope={props.config.scope}
       authority={props.config.authority}
+      metadata={metadata}
       client_secret={props.config.client_secret}
       client_id={props.config.client_id}
       redirect_uri={props.config.redirect_uri}

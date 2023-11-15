@@ -5,6 +5,8 @@ export interface ExampleOidcConfig {
 
   // oidc
   authority: string;
+  authorizeUrl?: string,
+  tokenUrl?:string,
   client_id: string;
   client_secret?: string;
   scope: string;
@@ -21,7 +23,17 @@ const baseHostUrl = process.env.REACT_APP_HOST_URL;
 
 export const exampleConfigs: ExampleOidcConfig[] = [
   {
-    name: "OIDC no PKCE (NOT RECOMMENDED)",
+    name: "Live: OIDC PKCE",
+    path: "oidc-live",
+    description: "OIDC flow using PKCE",
+    redirect_uri: `${baseHostUrl}/oidc/signin/oidc-live`,
+    authority: autority,
+    client_id: "43e0b7b9-57b8-4e37-a2c2-636bd42b8267",
+    scope: scope,
+    supportLoginParams: true
+  },
+  {
+    name: "Simulation: OIDC no PKCE (NOT RECOMMENDED)",
     path: "oidc-no-pkce",
     description: "OIDC flow without using PKCE (NOT RECOMMENDED)",
     redirect_uri: `${baseHostUrl}/oidc/signin/oidc-no-pkce`,
@@ -32,7 +44,7 @@ export const exampleConfigs: ExampleOidcConfig[] = [
     supportLoginParams: true
   },
   {
-    name: "OIDC PKCE",
+    name: "Simulation: OIDC PKCE",
     path: "oidc-pkce",
     description: "OIDC flow using PKCE",
     redirect_uri: `${baseHostUrl}/oidc/signin/oidc-pkce`,
@@ -42,7 +54,7 @@ export const exampleConfigs: ExampleOidcConfig[] = [
     supportLoginParams: true
   },
   {
-    name: "OIDC PKCE min scopes",
+    name: "Simulation: OIDC PKCE min scopes",
     path: "oidc-min-scopes",
     description: "OIDC flow using PKCE",
     redirect_uri: `${baseHostUrl}/oidc/signin/oidc-min-scopes`,
@@ -52,7 +64,7 @@ export const exampleConfigs: ExampleOidcConfig[] = [
     supportLoginParams: true
   },
   {
-    name: "OIDC via Keycloak",
+    name: "Simulation: OIDC via Keycloak",
     path: "oidc-keycloak",
     description: "OIDC flow via Keycloak",
     redirect_uri: `${baseHostUrl}/oidc/signin/oidc-keycloak`,
@@ -63,12 +75,25 @@ export const exampleConfigs: ExampleOidcConfig[] = [
     supportLoginParams: false
   },
   {
-    name: "OIDC via dotnet-server-mvc-oidc",
+    name: "Local: OIDC via dotnet-server-mvc-oidc",
     path: "oidc-dotnet-server-mvc-oidc",
     description: "OIDC flow via dotnet-server-mvc-oidc example (needs to be started locally)",
     redirect_uri: `${baseHostUrl}/oidc/signin/oidc-dotnet-server-mvc-oidc`,
     authority: "https://localhost:44313",
     client_id: "6231564A5-E7FE-42CB-B10D-61EF6A8F3654",
+    scope: "openid",
+    executeLogout: true,
+    supportLoginParams: false
+  },
+  {
+    name: "Local: OIDC via laravel-passport-oidc",
+    path: "oidc-laravel-passport-oidc",
+    description: "OIDC flow via laravel-passport-oidc example (needs to be started locally)",
+    redirect_uri: `${baseHostUrl}/oidc/signin/oidc-laravel-passport-oidc`,
+    authority: "http://localhost:8081",
+    authorizeUrl: "http://localhost:8081/oauth/authorize",
+    tokenUrl: "http://localhost:8081/oauth/token",
+    client_id: "3",
     scope: "openid",
     executeLogout: true,
     supportLoginParams: false

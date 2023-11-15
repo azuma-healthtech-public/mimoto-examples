@@ -3,7 +3,6 @@ import { Card, Divider, Spin } from "antd";
 import { AuthProvider, useAuth } from "react-oidc-context";
 import { ExampleOidcConfig } from "../config/OidcConfig";
 import Token from "../components/Token";
-import {OidcMetadata} from "oidc-client-ts";
 
 export default function Oidc(props: { config: ExampleOidcConfig }) {
     let metadata = undefined;

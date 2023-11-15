@@ -84,7 +84,7 @@ export const exampleConfigs: ExampleOidcConfig[] = [
     scope: "openid",
     executeLogout: true,
     supportLoginParams: false
-  },
+  },/*
   {
     name: "Local: OIDC via laravel-passport-oidc",
     path: "oidc-laravel-passport-oidc",
@@ -97,5 +97,5 @@ export const exampleConfigs: ExampleOidcConfig[] = [
     scope: "openid",
     executeLogout: true,
     supportLoginParams: false
-  },
+  },*/
 ];

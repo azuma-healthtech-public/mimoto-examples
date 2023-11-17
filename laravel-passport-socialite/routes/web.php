@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use Laravel\Passport\AuthCode;
 use Ramsey\Uuid\Uuid;
 
 /*
@@ -21,16 +22,15 @@ Route::get('/', function () {
  
 Route::get('/login', function () {
     return Socialite::driver('mimoto')->stateless()->redirect();
-});
+})->name('login');
  
 Route::get('/login/callback', function () {
     $userSocial = Socialite::driver('mimoto')->stateless()->user();
-    
     $user = User::where(['email' => $userSocial->getEmail()])->first();
     if($user) {
 
         Auth::login($user);
-        return Redirect::to('/');
+        return Redirect::intended();
         
     } else {
         $randomUserPw = Uuid::uuid4();
@@ -43,7 +43,7 @@ Route::get('/login/callback', function () {
         ]);
 
         Auth::login($user);
-        return Redirect::to('/');
+        return Redirect::intended();
 
     }
 });

@@ -25,8 +25,10 @@ ASP.NET Core Authorization Server, which integrates mimoto (via authorization co
 ## rails-rodauth-omniauth-simple
 Simple example using omiauth to integrate mimoto (via authorization code flow) and rodauth for auth management.
 
-## laravel-passport-socialite-simple
-Simple example using socialite to integrate mimoto (via authorization code flow) and passport for auth management.
+## laravel-passport-socialite
+Simple example using socialite to integrate mimoto (via authorization code flow) and passport for auth management. Can be used to 
+- directly login via login api 
+- via authorization code flow
 
 ## ...
 More coming soon.

@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.mimoto.example.gematikmock",
+    "sha256_cert_fingerprints":
+    ["6E:72:68:5A:B5:1A:68:FF:54:F2:9D:E8:75:26:6F:D4:6D:9D:A0:2A:DF:94:B2:86:30:D8:91:8F:4E:2C:9B:3F"]
+  }
+}]

@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
-        binding.loginButton.setEnabled(!TextUtils.isEmpty(RedirectUriReceiverActivity.Data));
+        binding.loginButton.setEnabled(!TextUtils.isEmpty(RedirectUriReceiverActivity.Data) && LoginTask.AuthHeaderGematik != "AUTH_HEADER_FROM_GEMATIK");
         binding.textviewAuth.setText(TextUtils.isEmpty(RedirectUriReceiverActivity.Data) ? "-":RedirectUriReceiverActivity.Data);
     }
 

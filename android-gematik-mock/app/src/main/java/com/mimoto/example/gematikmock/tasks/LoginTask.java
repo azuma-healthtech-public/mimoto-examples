@@ -9,8 +9,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class LoginTask implements Callable<String> {
-    // FIXME: adjust this
-    private static final String AuthHeaderGematik="AUTH_HEADER_FROM_gematik";
+    public static final String AuthHeaderGematik = "AUTH_HEADER_FROM_GEMATIK"; // FIXME: adjust this
 
     private String authData;
 

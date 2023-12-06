@@ -33,7 +33,20 @@ const configMimoto: AuthConfiguration = {
   issuer: 'https://mimoto-test.pie.azuma-health.tech',
   clientId: 'b664b9ab-1484-4228-b546-7b173a860f44',
   redirectUrl: 'https://mimoto-example-app.azuma-health.tech/app/ce',
-  additionalParameters: {},
+  additionalParameters: {provider: 'https://gsi.dev.gematik.solutions'},
+  scopes: ['openid', 'urn:telematik:versicherter', 'urn:telematik:email'],
+  serviceConfiguration: {
+    authorizationEndpoint:
+      'https://mimoto-test.pie.azuma-health.tech/connect/auth',
+    tokenEndpoint: 'https://mimoto-test.pie.azuma-health.tech/connect/token',
+  },
+};
+
+const configMimotoGematikSimulation: AuthConfiguration = {
+  issuer: 'https://mimoto-test.pie.azuma-health.tech',
+  clientId: 'da7c5825-694a-4918-85f4-e5ad1a9247db',
+  redirectUrl: 'https://mimoto-example-app.azuma-health.tech/app/ce',
+  additionalParameters: {provider: 'https://gsi.dev.gematik.solutions'},
   scopes: ['openid', 'urn:telematik:versicherter', 'urn:telematik:email'],
   serviceConfiguration: {
     authorizationEndpoint:
@@ -49,10 +62,10 @@ function App(): JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-  const handleAuthorize = useCallback(async () => {
+  const handleAuthorize = useCallback(async config => {
     try {
       const newAuthState = await authorize({
-        ...configMimoto,
+        ...config,
         connectionTimeoutSeconds: 5,
         iosPrefersEphemeralSession: true,
         usePKCE: true,
@@ -94,12 +107,20 @@ function App(): JSX.Element {
             <AppSection title="Logged In">{authState.email}</AppSection>
           )}
           {!authState.accessToken && (
-            <AppSection title="Login">
-              <Button
-                onPress={() => handleAuthorize()}
-                title="Login with Gesundsheits-ID"
-              />
-            </AppSection>
+            <>
+              <AppSection title="Login">
+                <Button
+                  onPress={() => handleAuthorize(configMimoto)}
+                  title="Login with Gesundsheits-ID"
+                />
+              </AppSection>
+              <AppSection title="Login (gematik, Simulation)">
+                <Button
+                  onPress={() => handleAuthorize(configMimotoGematikSimulation)}
+                  title="Login with Gesundsheits-ID"
+                />
+              </AppSection>
+            </>
           )}
         </View>
       </ScrollView>

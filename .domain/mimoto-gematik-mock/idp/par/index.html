@@ -2,24 +2,30 @@
 <html>
   <head>
     <title>Example PAR Landing</title>
-<script type="text/javascript">
-
-function goApp() { 
-	window.location.replace(window.location.href);
- }
-
-window.goApp = goApp;
-
-</script>
+<style>
+#popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+} height: 100px;
+}​
+</style>
   </head>
 
 <body>
-
-	<button type="button"
-		onclick="window.location.replace(window.location.href)">
-		Open App
-	</button>
-
+   <div id='popup' >
+	<div>
+		<span>Very basic TEST-IDP Landing page</span>
+	</div>
+	<div>
+		<button type="button" style="width:300px; height:40px; margin-top:20px"
+			onclick="window.open(window.location.href, '_blank')">
+			Open Authenticator App
+		</button>
+	</div>
+   </div>
 </body>
 
 

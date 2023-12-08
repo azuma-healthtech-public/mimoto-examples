@@ -1,11 +1,15 @@
 {
-  "applinks": {
-      "details": [
-           {
-             "appIDs": [ "CRWTAA276J.com.mimoto.example.gematikmock.ios", "CRWTAA276J.com.mimoto.example.diga.ios" ],
-             "paths": ["*"]
-             ]
-           }
-       ]
-   }
+    "applinks": {
+        "details": [
+            {
+                "appIDs": [
+                    "CRWTAA276J.com.mimoto.example.gematikmock.ios",
+                    "CRWTAA276J.com.mimoto.example.diga.ios"
+                ],
+                "paths": [
+                    "*"
+                ]
+            }
+        ]
+    }
 }

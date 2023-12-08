@@ -6,7 +6,8 @@
                     "CRWTAA276J.com.mimoto.example.diga.ios"
                 ],
                 "paths": [
-                    "*"
+                    "/app/ce",
+                    "/code/ce"
                 ]
             }
         ]

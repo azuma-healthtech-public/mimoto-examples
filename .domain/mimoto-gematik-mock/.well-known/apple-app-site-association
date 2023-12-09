@@ -1,0 +1,14 @@
+{
+    "applinks": {
+        "details": [
+            {
+                "appIDs": [
+                    "CRWTAA276J.com.mimoto.example.gematikmock.ios"
+                ],
+                "paths": [
+                    "*"
+                ]
+            }
+        ]
+    }
+}

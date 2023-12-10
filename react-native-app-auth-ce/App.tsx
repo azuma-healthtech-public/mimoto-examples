@@ -20,40 +20,15 @@ import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
 import {AuthConfiguration, authorize} from 'react-native-app-auth';
 import {AppSection} from './AppSection';
 import {jwtDecode} from 'jwt-decode';
-import 'core-js/stable/atob'; // needed for jwt decode
+import 'core-js/stable/atob';
+import {executeCodeExchange} from './lib/Api';
+import {configMimoto, configMimotoGematikSimulation} from './lib/Constants'; // needed for jwt decode
 
 const defaultAuthState = {
   hasLoggedInOnce: false,
   accessToken: '',
   idToken: '',
   email: '',
-};
-
-const configMimoto: AuthConfiguration = {
-  issuer: 'https://mimoto-test.pie.azuma-health.tech',
-  clientId: 'b664b9ab-1484-4228-b546-7b173a860f44',
-  redirectUrl: 'https://mimoto-example-app.azuma-health.tech/app/ce',
-  scopes: ['openid', 'urn:telematik:versicherter', 'urn:telematik:email'],
-  serviceConfiguration: {
-    authorizationEndpoint:
-      'https://mimoto-test.pie.azuma-health.tech/connect/auth',
-    tokenEndpoint: 'https://mimoto-test.pie.azuma-health.tech/connect/token',
-  },
-};
-
-const configMimotoGematikSimulation: AuthConfiguration = {
-  issuer: 'https://mimoto-test.pie.azuma-health.tech',
-  //clientId: 'b664b9ab-1484-4228-b546-7b173a860f44',
-  clientId: 'da7c5825-694a-4918-85f4-e5ad1a9247db',
-  redirectUrl: 'https://mimoto-example-app.azuma-health.tech/app/ce',
-  additionalParameters: {provider: 'https://gsi.dev.gematik.solutions'},
-  scopes: ['openid', 'urn:telematik:versicherter', 'urn:telematik:email'],
-  serviceConfiguration: {
-    authorizationEndpoint:
-      'https://mimoto-test.pie.azuma-health.tech/connect/auth',
-    tokenEndpoint: 'https://mimoto-test.pie.azuma-health.tech/connect/token',
-  },
-  iosCustomBrowser: 'safari',
 };
 
 function App(): JSX.Element {
@@ -65,7 +40,7 @@ function App(): JSX.Element {
   };
   const handleAuthorize = useCallback(async (config: AuthConfiguration) => {
     try {
-      const newAuthState = await authorize({
+      let newAuthState = await authorize({
         ...config,
         connectionTimeoutSeconds: 5,
         iosPrefersEphemeralSession: true,
@@ -78,30 +53,8 @@ function App(): JSX.Element {
         newAuthState.authorizationCode &&
         newAuthState.authorizationCode.length !== 0
       ) {
-        // code exchange
-        let response = await fetch(
-          'https://mimoto-test.pie.azuma-health.tech/connect/token',
-          {
-            method: 'POST',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({
-              grant_type: 'authorization_code',
-              client_id: config.clientId,
-              redirect_uri: config.redirectUrl,
-              code: newAuthState.authorizationCode,
-              code_verifier: newAuthState.codeVerifier!,
-            }).toString(),
-          },
-        );
-        let responseJson = await response.json();
-        if (responseJson.error) {
-          console.error('error ', responseJson.error); // ...
-        }
-        newAuthState.accessToken = responseJson.access_token;
-        newAuthState.idToken = responseJson.id_token;
+        // code exchange: this is required if code exchange is disable or not executed in app auth
+        newAuthState = await executeCodeExchange(config, newAuthState);
       }
 
       const decoded = jwtDecode(newAuthState.idToken);
@@ -137,7 +90,15 @@ function App(): JSX.Element {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
           {authState.accessToken && (
-            <AppSection title="Logged In">{authState.email}</AppSection>
+            <>
+              <AppSection title="Logged In">{authState.email}</AppSection>
+              <AppSection title="Reset">
+                <Button
+                  onPress={() => setAuthState(defaultAuthState)}
+                  title="Reset"
+                />
+              </AppSection>
+            </>
           )}
           {!authState.accessToken && (
             <>

@@ -3,7 +3,8 @@
         "details": [
             {
                 "appIDs": [
-                    "CRWTAA276J.com.mimoto.example.diga.ios"
+                    "CRWTAA276J.com.mimoto.example.diga.ios",
+                    "CRWTAA276J.com.mimoto.example.diga.rn.ios"
                 ],
                 "paths": [
                     "/app/ce",

@@ -53,7 +53,7 @@ const configMimotoGematikSimulation: AuthConfiguration = {
       'https://mimoto-test.pie.azuma-health.tech/connect/auth',
     tokenEndpoint: 'https://mimoto-test.pie.azuma-health.tech/connect/token',
   },
-  iosCustomBrowser: 'safari'
+  iosCustomBrowser: 'safari',
 };
 
 function App(): JSX.Element {
@@ -63,7 +63,7 @@ function App(): JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-  const handleAuthorize = useCallback(async config => {
+  const handleAuthorize = useCallback(async (config: AuthConfiguration) => {
     try {
       const newAuthState = await authorize({
         ...config,
@@ -71,27 +71,30 @@ function App(): JSX.Element {
         iosPrefersEphemeralSession: true,
         skipCodeExchange: false,
 
-        usePKCE: true
+        usePKCE: true,
       });
 
-      if( newAuthState.authorizationCode && newAuthState.authorizationCode.length != 0 ){
+      if (
+        newAuthState.authorizationCode &&
+        newAuthState.authorizationCode.length !== 0
+      ) {
         // code exchange
         let response = await fetch(
-          "https://mimoto-test.pie.azuma-health.tech/connect/token",
+          'https://mimoto-test.pie.azuma-health.tech/connect/token',
           {
-            method: 'POST', 
+            method: 'POST',
             headers: {
               Accept: 'application/json',
               'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: new URLSearchParams({
-              'grant_type': 'authorization_code',
-              'client_id': config.clientId,
-              'redirect_uri': config.redirectUrl,
-              'code': newAuthState.authorizationCode,
-              'code_verifier': newAuthState.codeVerifier!
-          }).toString()
-          }
+              grant_type: 'authorization_code',
+              client_id: config.clientId,
+              redirect_uri: config.redirectUrl,
+              code: newAuthState.authorizationCode,
+              code_verifier: newAuthState.codeVerifier!,
+            }).toString(),
+          },
         );
         let responseJson = await response.json();
         if (responseJson.error) {
@@ -113,7 +116,7 @@ function App(): JSX.Element {
       });
 
       // HINT: here you could also exchange mimoto AT/ID for your own AT/ID
-    } catch (error) {
+    } catch (error: any) {
       // FIXME: provide proper error handling
       Alert.alert('Failed to log in', error?.message);
     }

@@ -9,6 +9,7 @@ import {
   scopes,
 } from '../Constants';
 import uuid from 'react-native-uuid';
+import {URL} from 'react-native-url-polyfill';
 
 function createPkceClient(): PKCE {
   return new PKCE({
@@ -38,7 +39,7 @@ export const executeLoadIdps = async () => {
 export const executeAuthRequest = async (pkce: PKCE, issuer: string) => {
   const result = pkce.authorizeUrl({
     provider: issuer,
-    state: uuid.v4.toString(),
+    state: uuid.v4().toString(),
   });
 
   const response = await fetch(result, {redirect: 'manual'}); // avoid automatic redirects
@@ -58,7 +59,7 @@ export interface TokenResponse {
   scope: string;
 }
 
-export const executeCodeExchange = async (pkce: PKCE, deepLink: string) => {
+const executeCodeExchangeMimotoDeepLink = async (deepLink: string) => {
   // internal mimoto exchange
   let response = await fetch(metadata.exchange_endpoint, {
     method: 'POST',
@@ -76,7 +77,46 @@ export const executeCodeExchange = async (pkce: PKCE, deepLink: string) => {
   }
 
   const responseJson = await response.json();
-  const externalCodeResponse = responseJson.redirectUrl;
+  return responseJson.redirectUrl;
+};
+const executeCodeExchangeMimotoCodeState = async (deepLink: string) => {
+  const url = new URL(deepLink);
+  const code = url.searchParams.get('code');
+  const state = url.searchParams.get('state');
+
+  // internal mimoto exchange
+  let response = await fetch(metadata.exchange_endpoint, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      code: code,
+      state: state,
+      clientId: clientId,
+    }),
+  });
+  if (response.status !== 200) {
+    return null;
+  }
+  const responseJson = await response.json();
+  return responseJson.redirectUrl;
+};
+
+export const executeCodeExchange = async (pkce: PKCE, deepLink: string) => {
+  // Internal mimoto code exchange
+  // Using code + state
+  //const externalCodeResponse = await executeCodeExchangeMimotoCodeState(
+  //  deepLink,
+  //);
+  // Or full deep link
+  const externalCodeResponse = await executeCodeExchangeMimotoDeepLink(
+    deepLink,
+  );
+  if (!externalCodeResponse) {
+    return null;
+  }
 
   console.log('Internal mimoto exchange successful');
 

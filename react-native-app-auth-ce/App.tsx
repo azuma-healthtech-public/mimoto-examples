@@ -22,7 +22,7 @@ import {AppSection} from './AppSection';
 import {jwtDecode} from 'jwt-decode';
 import 'core-js/stable/atob';
 import {executeCodeExchange} from './lib/Api';
-import {configMimoto, configMimotoGematikSimulation} from './lib/Constants'; // needed for jwt decode
+import {configMimoto, configMimotoGematik, configMimotoGematikSimulation} from './lib/Constants'; // needed for jwt decode
 
 const defaultAuthState = {
   hasLoggedInOnce: false,
@@ -105,6 +105,12 @@ function App(): JSX.Element {
               <AppSection title="Login">
                 <Button
                   onPress={() => handleAuthorize(configMimoto)}
+                  title="Login with Gesundsheits-ID"
+                />
+              </AppSection>
+              <AppSection title="Login (gematik)">
+                <Button
+                  onPress={() => handleAuthorize(configMimotoGematik)}
                   title="Login with Gesundsheits-ID"
                 />
               </AppSection>

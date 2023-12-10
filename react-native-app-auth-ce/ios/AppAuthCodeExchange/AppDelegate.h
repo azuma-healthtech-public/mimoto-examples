@@ -8,3 +8,4 @@
 @property(nonatomic, weak) id<RNAppAuthAuthorizationFlowManagerDelegate> authorizationFlowManagerDelegate;
 
 @end
+		

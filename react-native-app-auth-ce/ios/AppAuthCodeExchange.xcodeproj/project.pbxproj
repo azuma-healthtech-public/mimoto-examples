@@ -14,6 +14,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-AppAuthCodeExchange-AppAuthCodeExchangeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-AppAuthCodeExchange-AppAuthCodeExchangeTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		A0E24FFE2B261F6F00393F03 /* ExchangeCodes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0E24FFD2B261F6F00393F03 /* ExchangeCodes.storyboard */; };
+		A0E250012B2622A800393F03 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E250002B2622A800393F03 /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,9 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = AppAuthCodeExchange/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-AppAuthCodeExchange-AppAuthCodeExchangeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppAuthCodeExchange-AppAuthCodeExchangeTests.release.xcconfig"; path = "Target Support Files/Pods-AppAuthCodeExchange-AppAuthCodeExchangeTests/Pods-AppAuthCodeExchange-AppAuthCodeExchangeTests.release.xcconfig"; sourceTree = "<group>"; };
 		A0DDC2992B23CF3E003A398B /* AppAuthCodeExchange.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = AppAuthCodeExchange.entitlements; path = AppAuthCodeExchange/AppAuthCodeExchange.entitlements; sourceTree = "<group>"; };
+		A0E24FFD2B261F6F00393F03 /* ExchangeCodes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExchangeCodes.storyboard; sourceTree = "<group>"; };
+		A0E24FFF2B2622A700393F03 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		A0E250002B2622A800393F03 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -87,6 +92,8 @@
 		13B07FAE1A68108700A75B9A /* AppAuthCodeExchange */ = {
 			isa = PBXGroup;
 			children = (
+				A0E24FFF2B2622A700393F03 /* ViewController.h */,
+				A0E250002B2622A800393F03 /* ViewController.m */,
 				A0DDC2992B23CF3E003A398B /* AppAuthCodeExchange.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -94,6 +101,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				A0E24FFD2B261F6F00393F03 /* ExchangeCodes.storyboard */,
 			);
 			name = AppAuthCodeExchange;
 			sourceTree = "<group>";
@@ -244,6 +252,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0E24FFE2B261F6F00393F03 /* ExchangeCodes.storyboard in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
@@ -414,6 +423,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0E250012B2622A800393F03 /* ViewController.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);

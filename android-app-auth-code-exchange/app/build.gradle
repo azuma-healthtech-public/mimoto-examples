@@ -6,6 +6,15 @@ android {
     namespace 'com.mimoto.example.android.appauthce'
     compileSdk = 34
 
+    signingConfigs {
+        getByName("debug") {
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+            storeFile = file("debug.keystore")
+            storePassword = "android"
+        }
+    }
+
     defaultConfig {
         applicationId "com.mimoto.example.android.appauthce"
         minSdk 33

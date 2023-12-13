@@ -6,6 +6,15 @@ android {
     namespace = "com.mimoto.example.gematikmock"
     compileSdk = 34
 
+    signingConfigs {
+        getByName("debug") {
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+            storeFile = file("debug.keystore")
+            storePassword = "android"
+        }
+    }
+
     defaultConfig {
         applicationId = "com.mimoto.example.gematikmock"
         minSdk = 33
@@ -30,7 +39,6 @@ android {
         viewBinding = true
     }
 }
-
 dependencies {
 
     implementation("com.squareup.okhttp3:okhttp:4.12.0")

@@ -14,7 +14,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A073898A2B21E63200F822B4 /* ios-gematik-mock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-gematik-mock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A073898A2B21E63200F822B4 /* mimoto.example.gematikmock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mimoto.example.gematikmock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A073898D2B21E63200F822B4 /* ios_gematik_mockApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_gematik_mockApp.swift; sourceTree = "<group>"; };
 		A073898F2B21E63200F822B4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A07389912B21E63300F822B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -37,7 +37,7 @@
 		A07389812B21E63200F822B4 = {
 			isa = PBXGroup;
 			children = (
-				A073898C2B21E63200F822B4 /* ios-gematik-mock */,
+				A073898C2B21E63200F822B4 /* mimoto.example.gematikmock */,
 				A073898B2B21E63200F822B4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -45,12 +45,12 @@
 		A073898B2B21E63200F822B4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A073898A2B21E63200F822B4 /* ios-gematik-mock.app */,
+				A073898A2B21E63200F822B4 /* mimoto.example.gematikmock.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A073898C2B21E63200F822B4 /* ios-gematik-mock */ = {
+		A073898C2B21E63200F822B4 /* mimoto.example.gematikmock */ = {
 			isa = PBXGroup;
 			children = (
 				A087B76A2B2359D700B6234C /* ios-gematik-mock.entitlements */,
@@ -60,7 +60,7 @@
 				A07389912B21E63300F822B4 /* Assets.xcassets */,
 				A07389932B21E63300F822B4 /* Preview Content */,
 			);
-			path = "ios-gematik-mock";
+			path = mimoto.example.gematikmock;
 			sourceTree = "<group>";
 		};
 		A07389932B21E63300F822B4 /* Preview Content */ = {
@@ -74,9 +74,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A07389892B21E63200F822B4 /* ios-gematik-mock */ = {
+		A07389892B21E63200F822B4 /* mimoto.example.gematikmock */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A07389982B21E63300F822B4 /* Build configuration list for PBXNativeTarget "ios-gematik-mock" */;
+			buildConfigurationList = A07389982B21E63300F822B4 /* Build configuration list for PBXNativeTarget "mimoto.example.gematikmock" */;
 			buildPhases = (
 				A07389862B21E63200F822B4 /* Sources */,
 				A07389872B21E63200F822B4 /* Frameworks */,
@@ -86,9 +86,9 @@
 			);
 			dependencies = (
 			);
-			name = "ios-gematik-mock";
+			name = mimoto.example.gematikmock;
 			productName = "ios-gematik-mock";
-			productReference = A073898A2B21E63200F822B4 /* ios-gematik-mock.app */;
+			productReference = A073898A2B21E63200F822B4 /* mimoto.example.gematikmock.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -106,7 +106,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A07389852B21E63200F822B4 /* Build configuration list for PBXProject "ios-gematik-mock" */;
+			buildConfigurationList = A07389852B21E63200F822B4 /* Build configuration list for PBXProject "mimoto.example.gematikmock" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -119,7 +119,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A07389892B21E63200F822B4 /* ios-gematik-mock */,
+				A07389892B21E63200F822B4 /* mimoto.example.gematikmock */,
 			);
 		};
 /* End PBXProject section */
@@ -201,7 +201,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -258,7 +258,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -273,14 +273,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "ios-gematik-mock/ios-gematik-mock.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = "mimoto.example.gematikmock/ios-gematik-mock.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ios-gematik-mock/Preview Content\"";
-				DEVELOPMENT_TEAM = CRWTAA276J;
+				DEVELOPMENT_ASSET_PATHS = "\"mimoto.example.gematikmock/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CRWTAA276J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "ios-gematik-mock/Info.plist";
+				INFOPLIST_FILE = mimoto.example.gematikmock/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -293,6 +295,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mimoto.example.gematikmock.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Mimoto IDP Mock";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -304,14 +308,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "ios-gematik-mock/ios-gematik-mock.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = "mimoto.example.gematikmock/ios-gematik-mock.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ios-gematik-mock/Preview Content\"";
-				DEVELOPMENT_TEAM = CRWTAA276J;
+				DEVELOPMENT_ASSET_PATHS = "\"mimoto.example.gematikmock/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CRWTAA276J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "ios-gematik-mock/Info.plist";
+				INFOPLIST_FILE = mimoto.example.gematikmock/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -324,6 +330,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mimoto.example.gematikmock.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Mimoto IDP Mock";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -333,7 +341,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A07389852B21E63200F822B4 /* Build configuration list for PBXProject "ios-gematik-mock" */ = {
+		A07389852B21E63200F822B4 /* Build configuration list for PBXProject "mimoto.example.gematikmock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A07389962B21E63300F822B4 /* Debug */,
@@ -342,7 +350,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A07389982B21E63300F822B4 /* Build configuration list for PBXNativeTarget "ios-gematik-mock" */ = {
+		A07389982B21E63300F822B4 /* Build configuration list for PBXNativeTarget "mimoto.example.gematikmock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A07389992B21E63300F822B4 /* Debug */,

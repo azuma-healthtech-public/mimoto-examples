@@ -30,13 +30,15 @@ class _LoginIdpState extends State<LoginIdp> {
       if (MimotoConstants.clientId == MimotoConstants.clientIdSimulation) {
         final codeResponse = await flow.executeAuthRequest();
         await flow.executeCodeExchangeInternal(Uri.parse(codeResponse!));
-        continueToWelcome();
+        Future.delayed(const Duration(milliseconds: 500), () {
+          continueToWelcome();
+        });
         return;
       }
 
       final url = await flow.executeAuthRequest();
       if (url != null) {
-        launchUrl(Uri.parse(url));
+        launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
       } else {
         setState(() {
           _error = "Could not login ...";

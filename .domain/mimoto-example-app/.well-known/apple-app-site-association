@@ -5,7 +5,8 @@
                 "appIDs": [
                     "CRWTAA276J.com.mimoto.example.diga.ios",
                     "CRWTAA276J.com.mimoto.example.diga.rn.ios",
-                    "CRWTAA276J.com.mimoto.example.diga.rn.web.ios"
+                    "CRWTAA276J.com.mimoto.example.diga.rn.web.ios",
+	            "CRWTAA276J.com.example.mimoto.flutterce"
                 ],
                 "paths": [
                     "/app/ce",

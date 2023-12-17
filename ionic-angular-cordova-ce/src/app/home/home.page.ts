@@ -28,9 +28,6 @@ export class HomePage implements OnInit {
                         browser._loadAfterBeforeload(evt.url);
                         console.log('mimoto link - open inapp');
                     } else {
-                        browser.close();
-
-
                         // @ts-ignore
                         if (clientId === clientIdSimulation) { // SIMULATION only
                             this.handleSimulationAuthCode(evt.url);
@@ -40,7 +37,12 @@ export class HomePage implements OnInit {
 
                             const platform = this.inAppBrowser.create(evt.url, '_system', {location: 'yes'});
                             platform.show();
-                        }
+                        };
+                   
+                        setTimeout( ()=> {
+                           browser.close()
+
+                        }, 200);
                     }
                 });
 

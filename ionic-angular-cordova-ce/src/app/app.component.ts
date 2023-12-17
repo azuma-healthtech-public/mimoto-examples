@@ -1,5 +1,4 @@
 import {Component, NgZone} from '@angular/core';
-import {SplashScreen} from '@capacitor/splash-screen';
 import {Platform} from '@ionic/angular';
 import {Deeplinks} from '@ionic-native/deeplinks/ngx';
 import {NavigationExtras, Router} from '@angular/router';
@@ -21,8 +20,6 @@ export class AppComponent {
     }
 
     initializeApp() {
-        SplashScreen.hide();
-
         this.platform.ready().then(() => {
             this.setupDeeplinks();
         });

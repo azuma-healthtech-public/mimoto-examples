@@ -37,10 +37,11 @@ export class HomePage implements OnInit {
 
                             const platform = this.inAppBrowser.create(evt.url, '_system', {location: 'yes'});
                             platform.show();
-                        };
-                   
-                        setTimeout( ()=> {
-                           browser.close()
+                        }
+
+                        // for some reason, calling browser.close directly does not actually close browser on IOS
+                        setTimeout(() => {
+                            browser.close();
 
                         }, 200);
                     }

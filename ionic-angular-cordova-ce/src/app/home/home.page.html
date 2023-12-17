@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Mimoto Example</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="center">
+        <div>
+            <ion-card>
+                <ion-card-header>
+                    <ion-card-title>Variant 1</ion-card-title>
+                    <ion-card-subtitle>Use custom IDP selection</ion-card-subtitle>
+                </ion-card-header>
+
+                <ion-card-content>
+                    <ion-button [routerLink]="['/select-idps']">Login with Gesundheits-ID</ion-button>
+                </ion-card-content>
+            </ion-card>
+
+            <br/>
+
+            <ion-card>
+                <ion-card-header>
+                    <ion-card-title>Variant 2</ion-card-title>
+                    <ion-card-subtitle>Use mimoto IDP selection</ion-card-subtitle>
+                </ion-card-header>
+
+                <ion-card-content>
+                    <ion-button (click)="login()">Login with Gesundheits-ID</ion-button>
+                </ion-card-content>
+            </ion-card>
+        </div>
+    </div>
+</ion-content>

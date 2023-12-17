@@ -1,0 +1,15 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Select IDP</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item button *ngFor="let item of idps" (click)="loginWithProvider(item)">
+            <ion-label class="ion-text-wrap">
+                <h3>{{ item.organizationName }}</h3>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

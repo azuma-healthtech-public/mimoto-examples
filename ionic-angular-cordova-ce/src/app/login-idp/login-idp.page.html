@@ -1,0 +1,15 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Login IDP</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="center">
+        <div *ngIf="error != null">
+            {{error}}
+        </div>
+        <ion-button (click)="cancel()">Cancel</ion-button>
+    </div>
+
+</ion-content>

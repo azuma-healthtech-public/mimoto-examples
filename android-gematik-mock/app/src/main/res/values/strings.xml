@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Gematik Mock</string>
+    <string name="app_name">mimoto IDP Mock</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">IDP Authenticator</string>

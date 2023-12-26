@@ -2,14 +2,18 @@ package com.mimoto.example.gematikmock.tasks;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import java.util.concurrent.Callable;
 
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class LoginTask implements Callable<String> {
-    public static final String AuthHeaderGematik = "AUTH_HEADER_FROM_GEMATIK"; // FIXME: adjust this
+    private final String targetUrl = "https://mimoto-test.pie.azuma-health.tech/api/demo/login";
 
     private String authData;
 
@@ -20,33 +24,26 @@ public class LoginTask implements Callable<String> {
     @Override
     public String call() throws Exception {
         // Extremely simple --> just for demonstration purposes
+        Log.e("[gematikmock]", "Executing demo login");
+        Gson gson = new Gson();
+        DemoRequestData requestData = new DemoRequestData();
+        requestData.setUrl(authData);
 
-        Log.e("[gematikmock]", "Executing with following data:");
-        Log.e("[gematikmock]", authData);
+        String json = gson.toJson(requestData);
 
-        // get original request
-        String originalUrl = authData.replace("https://mimoto-gematik-mock.azuma-health.tech/idp/par?redirect=$", "");
-        Log.e("[gematikmock]", "Original url:");
-        Log.e("[gematikmock]", originalUrl);
-
-        // login with gematik IDP
-        String loginUrl = originalUrl.replace("https://gsi.dev.gematik.solutions/auth?", "https://gsi.dev.gematik.solutions/auth?user_id=12345678&");
-        Log.e("[gematikmock]", "Login url:");
-        Log.e("[gematikmock]", loginUrl);
-
-        // login
-        OkHttpClient client = new OkHttpClient().newBuilder()
-                .followRedirects(false)
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+        RequestBody body = RequestBody.create(json, MediaType.get("application/json"));
+        Request request = new Request.Builder()
+                .url(targetUrl)
+                .post(body)
                 .build();
 
-        Request request = new Request.Builder().url(loginUrl)
-                .addHeader("X-Authorization", AuthHeaderGematik).build();
         Response response = client.newCall(request).execute();
 
-        String redirect = response.header("Location");
-        Log.e("[gematikmock]", "Redirect back to:");
-        Log.e("[gematikmock]", redirect);
+        String responseJson = response.body().string();
+        DemoResponseData responseData = gson.fromJson(responseJson, DemoResponseData.class);
 
-        return redirect;
+        Log.e("[gematikmock]", "Executed demo login");
+        return responseData.getUrl();
     }
 }

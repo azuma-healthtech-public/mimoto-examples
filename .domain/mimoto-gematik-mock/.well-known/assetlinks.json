@@ -6,4 +6,12 @@
     "sha256_cert_fingerprints":
     ["6E:72:68:5A:B5:1A:68:FF:54:F2:9D:E8:75:26:6F:D4:6D:9D:A0:2A:DF:94:B2:86:30:D8:91:8F:4E:2C:9B:3F"]
   }
+}, {
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.mimoto.example.gematikmock",
+    "sha256_cert_fingerprints":
+    ["CA:1D:E6:47:C4:B6:B5:31:70:2C:DF:7D:DE:D9:01:29:07:39:A1:C1:81:F8:00:5E:3E:D1:C2:4F:F1:15:16:CF"]
+  }
 }]

@@ -15,4 +15,3 @@ export const metadata = {
     'https://mimoto-test.pie.azuma-health.tech/oidcf/exchange/mobile',
   idp_list_endpoint: 'https://mimoto-test.pie.azuma-health.tech//api/v1/idps',
 };
-export const relayingPartyId = 'a536bd28-872c-4a3e-8255-1231f7455fb7';

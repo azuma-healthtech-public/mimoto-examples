@@ -23,7 +23,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.example.mimoto_flutter_ce"
+    namespace "com.mimoto.example.flutter.ce"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 

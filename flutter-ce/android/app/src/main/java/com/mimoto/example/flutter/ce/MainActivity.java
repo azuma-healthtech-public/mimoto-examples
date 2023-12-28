@@ -1,4 +1,4 @@
-package com.example.mimoto_flutter_ce;
+package com.mimoto.example.flutter.ce;
 
 import io.flutter.embedding.android.FlutterActivity;
 

@@ -13,10 +13,10 @@ final router = GoRouter(
       GoRoute(path: 'select-idp', builder: (context, state) => SelectIdp()),
       GoRoute(path: 'login-idp', builder: (context, state) => LoginIdp()),
       GoRoute(
-          path: 'code/ce',
+          path: 'flutter-ce/code/ce',
           builder: (context, state) {
             final currentFlow = Provider.of<LoginFlowProvider>(context, listen: false);
-            print("Received code/ce app link. Current flow stage: ${currentFlow.stage}. Provider: ${currentFlow.provider}");
+            print("Received flutter-ce/code/ce app link. Current flow stage: ${currentFlow.stage}. Provider: ${currentFlow.provider}");
             currentFlow.prepareCodeExchangeMimotoDeepLink(state.uri);
 
             return LoginIdp();

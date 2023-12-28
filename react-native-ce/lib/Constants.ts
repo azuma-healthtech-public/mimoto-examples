@@ -1,5 +1,5 @@
-export const clientIdLive = 'b664b9ab-1484-4228-b546-7b173a860f44';
-export const clientIdSimulation = 'da7c5825-694a-4918-85f4-e5ad1a9247db';
+export const clientIdLive = 'b1d1ae60-f2f3-40ab-9391-d9ba5f5d5988';
+export const clientIdSimulation = 'a65c4641-76a5-4ecc-bce5-70bf2d1e6281';
 export const clientId = clientIdLive;
 export const scopes = 'openid urn:telematik:versicherter urn:telematik:email';
 export const redirectUrl =

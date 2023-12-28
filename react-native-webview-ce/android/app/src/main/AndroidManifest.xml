@@ -27,7 +27,7 @@
 
                 <data android:scheme="https"/>
                 <data android:host="mimoto-example-app.azuma-health.tech"/>
-                <data android:path="/code/ce"/>
+                <data android:path="/rn-webview-ce/code/ce"/>
             </intent-filter>
         </activity>
     </application>

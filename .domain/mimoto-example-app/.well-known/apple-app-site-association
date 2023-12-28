@@ -11,7 +11,10 @@
                 ],
                 "paths": [
                     "/app/ce",
-                    "/code/ce"
+                    "/code/ce",
+                    "rn-ce/code/ce",
+                    "rn-webview-ce/code/ce",
+                    "flutter-ce/code/ce"
                 ]
             }
         ]

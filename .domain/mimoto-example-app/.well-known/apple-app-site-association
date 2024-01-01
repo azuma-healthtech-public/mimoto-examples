@@ -14,21 +14,21 @@
                     "CRWTAA276J.com.mimoto.example.diga.rn.ios"
                 ],
                 "paths": [
-                    "/rn-ce/code/ce"
+                    "/rn-ce/*"
                 ]
             }, {
                 "appIDs": [
                     "CRWTAA276J.com.mimoto.example.diga.rn.web.ios"
                 ],
                 "paths": [
-                    "/rn-webview-ce/code/ce"
+                    "/rn-webview-ce/*"
                 ]
             }, {
                 "appIDs": [
                     "CRWTAA276J.com.example.mimoto.flutterce"
                 ],
                 "paths": [
-                    "/flutter-ce/code/ce"
+                    "/flutter-ce/*"
                 ]
             }
         ]

@@ -2,15 +2,6 @@
     "applinks": {
         "details": [{
                 "appIDs": [
-                    "CRWTAA276J.com.mimoto.example.diga.ios",
-                    "CRWTAA276J.com.mimoto.example.ionic.cordova"
-                ],
-                "paths": [
-                    "/app/ce",
-                    "/code/ce"
-                ]
-            }, {
-                "appIDs": [
                     "CRWTAA276J.com.mimoto.example.diga.rn.ios"
                 ],
                 "paths": [
@@ -30,7 +21,16 @@
                 "paths": [
                     "/flutter-ce/*"
                 ]
-            }
+            }, {
+                "appIDs": [
+                    "CRWTAA276J.com.mimoto.example.diga.ios",
+                    "CRWTAA276J.com.mimoto.example.ionic.cordova"
+                ],
+                "paths": [
+                    "/app/ce",
+                    "/code/ce"
+                ]
+            } 
         ]
     }
 }

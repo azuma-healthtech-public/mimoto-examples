@@ -10,7 +10,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 function App(): React.JSX.Element {
   const Stack = createNativeStackNavigator();
   const linking = {
-    prefixes: ['https://mimoto-example-app.azuma-health.tech'],
+    prefixes: ['https://mimoto-example-app.azuma-health.tech/rn-webview-ce'],
 
     getStateFromPath: (path, _) => {
       console.log('Received deep link');

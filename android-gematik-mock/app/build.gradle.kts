@@ -17,7 +17,7 @@ android {
 
     defaultConfig {
         applicationId = "com.mimoto.example.gematikmock"
-        minSdk = 33
+        minSdk = 21
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -40,7 +40,7 @@ android {
     }
 }
 dependencies {
-
+    implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")

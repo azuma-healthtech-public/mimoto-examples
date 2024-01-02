@@ -76,7 +76,7 @@ android {
 
     namespace "com.mimotoexample"
     defaultConfig {
-        applicationId "com.mimoto.example.rn.appauthce"
+        applicationId "com.mimoto.example.rn.webce"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

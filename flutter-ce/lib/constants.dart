@@ -1,6 +1,6 @@
 class MimotoConstants {
-  static const clientIdLive = 'b664b9ab-1484-4228-b546-7b173a860f44';
-  static const clientIdSimulation = 'da7c5825-694a-4918-85f4-e5ad1a9247db';
+  static const clientIdLive = 'aa1d0d62-fdc4-4023-9098-441bb0c48c1b';
+  static const clientIdSimulation = 'de98a87b-4b92-4724-9d47-57213ddf7dff';
   static const clientId = clientIdLive;
   static const scopes = ['openid', 'urn:telematik:versicherter', 'urn:telematik:email'];
   static const redirectUrl = 'https://mimoto-example-app.azuma-health.tech/app/ce';

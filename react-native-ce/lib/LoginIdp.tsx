@@ -3,6 +3,7 @@ import React, {useCallback, useState} from 'react';
 
 import {
   executeAuthRequest,
+  executeAuthRequestSimulation,
   executeCodeExchange,
   pkceClient,
   TokenResponse,
@@ -44,7 +45,10 @@ export function LoginIdp({route, navigation}) {
         pkceClient.reset(); // ensure we always use new state/pkce values
 
         if (clientId === clientIdSimulation) {
-          const codeResponse = await executeAuthRequest(pkceClient, issuer);
+          const codeResponse = await executeAuthRequestSimulation(
+            pkceClient,
+            issuer,
+          );
           const token = (await pkceClient.exchangeForAccessToken(
             codeResponse!,
           )) as TokenResponse;

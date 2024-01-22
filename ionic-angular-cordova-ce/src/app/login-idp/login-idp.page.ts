@@ -81,7 +81,7 @@ export class LoginIdpPage implements OnInit {
     }
 
     async startAuthMimotoSimulation(loading: HTMLIonLoadingElement, url: string) {
-        const result = await this.mimotoService.executeAuthRequestForPar(url);
+        const result = await this.mimotoService.executeAuthRequestForParSimulation(url);
 
         const params = (new URL(result)).searchParams;
         await this.oauthService.tryLoginCodeFlow({customHashFragment: `#${params.toString()}`});

@@ -11,6 +11,7 @@ import 'package:oauth2/oauth2.dart' as oauth2;
 import 'package:uuid/uuid.dart';
 
 import '../constants.dart';
+import '../model/auth.dart';
 import '../model/exchange.dart';
 
 class LoginFlowProvider {
@@ -40,6 +41,33 @@ class LoginFlowProvider {
   }
 
   Future<String?> executeAuthRequest() async {
+    if (stage != Stage.none) throw Exception("Unexpected stage ${stage}. Expected: ${Stage.none}");
+
+    stage = Stage.authRequest;
+
+    // (1) create auth url
+    grant =
+        oauth2.AuthorizationCodeGrant(MimotoConstants.clientId, Uri.parse(MimotoConstants.authorization_endpoint), Uri.parse(MimotoConstants.token_endpoint));
+
+    var initialAuthUrl = grant!.getAuthorizationUrl(Uri.parse(MimotoConstants.redirectUrl), scopes: MimotoConstants.scopes.toList(), state: state!);
+
+    // add &reponse_format=json to avoid automatic redirects, response in json format:
+    // { "url": "..." }
+    var fullAuthUrl = "${initialAuthUrl.toString()}&provider=${provider!}&response_format=json";
+
+    // (2) get target url from mimoto (this should be the idp authenticator deep link)
+    var response = await http.get(Uri.parse(fullAuthUrl));
+    if (response.statusCode == 200) {
+      print("Auth PAR response URL returned: ");
+      return AuthResponse.fromJson(jsonDecode(response.body)).url;
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to get execute par');
+    }
+  }
+
+  Future<String?> executeAuthRequestSimulation() async {
     if (stage != Stage.none) throw Exception("Unexpected stage ${stage}. Expected: ${Stage.none}");
 
     stage = Stage.authRequest;
@@ -88,9 +116,7 @@ class LoginFlowProvider {
         }));
 
     if (response.statusCode == 200) {
-      return ExchangeResponse
-          .fromJson(jsonDecode(response.body))
-          .redirectUrl;
+      return ExchangeResponse.fromJson(jsonDecode(response.body)).redirectUrl;
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.

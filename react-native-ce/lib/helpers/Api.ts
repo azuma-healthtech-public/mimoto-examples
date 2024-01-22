@@ -2,7 +2,6 @@ import PKCE from './js-pkce/PKCE';
 import {InMemoryStorage} from './InMemoryStorage';
 import {
   clientId,
-  clientIdSimulation,
   metadata,
   redirectUrl,
   relayingPartyId,
@@ -42,15 +41,31 @@ export const executeAuthRequest = async (pkce: PKCE, issuer: string) => {
     state: uuid.v4().toString(),
   });
 
-  const response = await fetch(result, {redirect: 'manual'}); // avoid automatic redirects
-
-  // DEMO ONLY: only added to support simulation
-  if (clientId === clientIdSimulation) {
-    return response.url;
-  }
-
-  return response.status === 200 ? response.url : null;
+  // add &reponse_format=json to avoid automatic redirects, response in json format:
+  // { "url": "..." }
+  const response = await fetch(`${result}&response_format=json`);
+  const responseJson = await response.json();
+  return response.status === 200 ? responseJson.url : null;
 };
+
+export const executeAuthRequestSimulation = async (
+  pkce: PKCE,
+  issuer: string,
+) => {
+  const result = pkce.authorizeUrl({
+    provider: issuer,
+    state: uuid.v4().toString(),
+  });
+
+  // add &reponse_format=json to avoid automatic redirects, response in json format:
+  // { "url": "..." }
+  const response = await fetch(`${result}`);
+  return response.url;
+};
+
+export interface AuthResponse {
+  url: string;
+}
 
 export interface TokenResponse {
   access_token: string;

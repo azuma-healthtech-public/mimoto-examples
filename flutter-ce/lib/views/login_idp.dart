@@ -28,7 +28,7 @@ class _LoginIdpState extends State<LoginIdp> {
     try {
       // Only for simulation flow
       if (MimotoConstants.clientId == MimotoConstants.clientIdSimulation) {
-        final codeResponse = await flow.executeAuthRequest();
+        final codeResponse = await flow.executeAuthRequestSimulation();
         await flow.executeCodeExchangeInternal(Uri.parse(codeResponse!));
         Future.delayed(const Duration(milliseconds: 500), () {
           continueToWelcome();

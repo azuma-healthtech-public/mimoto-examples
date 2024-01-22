@@ -19,6 +19,15 @@ export class MimotoService {
 
 
     async executeAuthRequestForPar(authUrl: string): Promise<string> {
+        // add &reponse_format=json to avoid automatic redirects, response in json format:
+        // { "url": "..." }
+        console.log('Start> ' + `${authUrl}&response_format=json`);
+        const response = await fetch(`${authUrl}&response_format=json`);
+        const responseJson = await response.json();
+
+        return response.status === 200 ? responseJson.url : null;
+    }
+    async executeAuthRequestForParSimulation(authUrl: string): Promise<string> {
         // the auth endpoint returns a 302 redirect
         // did not find a way to disable automatic redirect following in HttpClient
         // therefore using native http

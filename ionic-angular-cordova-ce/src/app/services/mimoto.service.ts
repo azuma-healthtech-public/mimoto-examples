@@ -21,7 +21,7 @@ export class MimotoService {
     async executeAuthRequestForPar(authUrl: string): Promise<string> {
         // add &reponse_format=json to avoid automatic redirects, response in json format:
         // { "url": "..." }
-        console.log('Start> ' + `${authUrl}&response_format=json`);
+        console.log('Start auth request');
         const response = await fetch(`${authUrl}&response_format=json`);
         const responseJson = await response.json();
 

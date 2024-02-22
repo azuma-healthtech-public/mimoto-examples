@@ -30,6 +30,13 @@
                     "/app/ce",
                     "/code/ce"
                 ]
+            }, {
+                "appIDs": [
+                    "CRWTAA276J.com.mimoto.example.diga.rnadb2c.ios"
+                ],
+                "paths": [
+                    "/rn-azure-ad-b2c-ce/*"
+                ]
             } 
         ]
     }

@@ -18,56 +18,211 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:paddingTop="40dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:orientation="vertical" >
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textview_header"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="Auth Data"
-            android:textAlignment="center"
-            android:textStyle="bold" />
-        <TextView
-            android:id="@+id/textview_auth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:layout_marginTop="16dp"
-            android:text=""/>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingTop="40dp"
+            android:paddingRight="16dp">
 
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/progressIndicator"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:indeterminate="true" />
+            <TextView
+                android:id="@+id/textview_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="Auth Data"
+                android:textAlignment="center"
+                android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/login_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:text="Login (gematik IDP)" />
+            <TextView
+                android:id="@+id/textview_auth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:text=""
+                android:textAlignment="center" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progressIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/textview_zser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="40dp"
+                android:text="Login user"
+                android:textAlignment="textStart"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/users_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/show_advanced_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:textColor="#5c5966"
+                android:background="@android:color/transparent"
+                android:text="Show advanced testing parameters..."  />
+
+            <LinearLayout
+                android:id="@+id/advanced_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/textview_scopes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Selected scopes (all possible scopes are displayed)"
+                    android:textAlignment="textStart"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:text="Built for azuma mimoto"
-            android:textAlignment="center"
-            android:textStyle="bold" />
-    </LinearLayout>
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/scope_openid"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="openid"
+                        android:textSize="5pt" />
 
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/scope_alter"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="urn:telematik:alter"
+                        android:textSize="5pt" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/scope_display_name"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="urn:telematik:display_name"
+                        android:textSize="5pt" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/scope_email"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="urn:telematik:email"
+                        android:textSize="5pt" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/scope_geburtsdatum"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="urn:telematik:geburtsdatum"
+                        android:textSize="5pt" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/scope_geschlecht"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="urn:telematik:geschlecht"
+                        android:textSize="5pt" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/scope_given_name"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="urn:telematik:given_name"
+                        android:textSize="5pt" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/scope_versicherter"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="urn:telematik:versicherter"
+                        android:textSize="5pt" />
+                </com.google.android.material.chip.ChipGroup>
+
+                <TextView
+                    android:id="@+id/textview_dc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Scope decline mode"
+                    android:textAlignment="textStart"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/scope_decline_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/textview_override"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Override health ID"
+                    android:textAlignment="textStart"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/text_override_health_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/login_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:text="Login (gematik IDP)" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:text="Built for azuma mimoto"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

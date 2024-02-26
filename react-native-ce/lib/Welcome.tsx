@@ -2,10 +2,11 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Button} from '@rneui/themed';
 import React from 'react';
 import {CommonActions} from '@react-navigation/native';
-import {Card} from '@rneui/base';
+import {Card, ListItem} from '@rneui/base';
 
 export function Welcome({route, navigation}) {
   const {user} = route.params;
+  const [expanded, setExpanded] = React.useState(false);
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
       <>
@@ -14,10 +15,65 @@ export function Welcome({route, navigation}) {
         </View>
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           <Card>
-            <Card.Title>Login successfull </Card.Title>
+            <Card.Title>Login successfull</Card.Title>
             <Card.Divider />
             <Text>Email from ID-Token:</Text>
             <Text>{user?.email}</Text>
+            <ListItem.Accordion
+              content={
+                <ListItem.Content>
+                  <ListItem.Title>All claims</ListItem.Title>
+                </ListItem.Content>
+              }
+              isExpanded={expanded}
+              onPress={() => {
+                setExpanded(!expanded);
+              }}>
+              <Text>birthdate: {user.claims.birthday}</Text>
+              <Text>
+                urn:telematik:claims:id:{' '}
+                {user.claims['urn:telematik:claims:id']}
+              </Text>
+              <Text>
+                urn:telematik:claims:organization:{' '}
+                {user.claims['urn:telematik:claims:organization']}
+              </Text>
+              <Text>
+                urn:telematik:claims:geschlecht:{' '}
+                {user.claims['urn:telematik:claims:geschlecht']}
+              </Text>
+              <Text>
+                urn:telematik:claims:display_name:{' '}
+                {user.claims['urn:telematik:claims:display_name']}
+              </Text>
+              <Text>
+                urn:telematik:claims:given_name:{' '}
+                {user.claims['urn:telematik:claims:given_name']}
+              </Text>
+              <Text>
+                urn:telematik:claims:profession:{' '}
+                {user.claims['urn:telematik:claims:profession']}
+              </Text>
+              <Text>acr: {user.claims.acr}</Text>
+              <Text>
+                urn:telematik:claims:email:{' '}
+                {user.claims['urn:telematik:claims:email']}
+              </Text>
+              <Text>
+                urn:telematik:claims:alter:{' '}
+                {user.claims['urn:telematik:claims:alter']}
+              </Text>
+              <Text>as: {user.claims.as}</Text>
+              <Text>sub: {user.claims.sub}</Text>
+              <Text>
+                ext-mimoto-original-iss:{' '}
+                {user.claims['ext-mimoto-original-iss']}
+              </Text>
+              <Text>
+                ext-mimoto-original-sub-unique:{' '}
+                {user.claims['ext-mimoto-original-sub-unique']}
+              </Text>
+            </ListItem.Accordion>
           </Card>
 
           <View style={{paddingVertical: 30}}>

@@ -17,6 +17,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
+            android:launchMode="singleInstance"
             android:label="@string/app_name"
             android:theme="@style/Theme.GematikMock">
             <intent-filter>
@@ -28,7 +29,9 @@
 
         <activity
             android:name=".RedirectUriReceiverActivity"
-            android:exported="true">
+            android:allowTaskReparenting="false"
+            android:exported="true"
+            android:launchMode="singleInstance">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 

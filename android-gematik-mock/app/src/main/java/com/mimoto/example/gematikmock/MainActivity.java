@@ -10,15 +10,27 @@ import android.text.TextUtils;
 import android.view.View;
 
 
+import com.mimoto.example.gematikmock.data.AvailableUser;
+import com.mimoto.example.gematikmock.data.Constants;
 import com.mimoto.example.gematikmock.databinding.ActivityMainBinding;
+import com.mimoto.example.gematikmock.tasks.DemoRequestData;
 import com.mimoto.example.gematikmock.tasks.LoginTask;
 import com.mimoto.example.gematikmock.tasks.TaskRunner;
 
 import android.view.Menu;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private TaskRunner taskRunner;
+
+    private AvailableUser authUser = Constants.AVAILABLE_USERS.get(Constants.DEFAULT_USER_INDEX);
+    private boolean advancedParams = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +50,37 @@ public class MainActivity extends AppCompatActivity {
                 binding.progressIndicator.setVisibility(View.VISIBLE);
                 binding.loginButton.setEnabled(false);
 
-                taskRunner.executeAsync(new LoginTask(RedirectUriReceiverActivity.Data), result -> {
+                DemoRequestData requestData = new DemoRequestData();
+                requestData.setUrl(RedirectUriReceiverActivity.Data);
+                requestData.setGematikEnableTesting(true);
+                requestData.setGematikLoginUser(authUser.getHealthId());
+
+                if( advancedParams){
+                    List<String> scopes = new ArrayList<String>();
+                    if( binding.scopeAlter.isChecked())
+                        scopes.add("urn:telematik:alter");
+                    if( binding.scopeDisplayName.isChecked())
+                        scopes.add("urn:telematik:display_name");
+                    if( binding.scopeEmail.isChecked())
+                        scopes.add("urn:telematik:email");
+                    if( binding.scopeGeburtsdatum.isChecked())
+                        scopes.add("urn:telematik:geburtsdatum");
+                    if( binding.scopeGeschlecht.isChecked())
+                        scopes.add("urn:telematik:geschlecht");
+                    if( binding.scopeVersicherter.isChecked())
+                        scopes.add("urn:telematik:versicherter");
+                    if( binding.scopeGivenName.isChecked())
+                        scopes.add("urn:telematik:given_name");
+                    if( binding.scopeOpenid.isChecked())
+                        scopes.add("openid");
+
+                    requestData.setGematikSelectedScopes(scopes);
+                }
+
+                requestData.setGematikScopeDeclineMode(binding.scopeDeclineSpinner.getSelectedItemPosition() == 0 ? "RemoveClaims": "AddEmptyClaims");
+                requestData.setGematikOverrideHealthId(binding.textOverrideHealthId.getText().toString());
+
+                taskRunner.executeAsync(new LoginTask(requestData), result -> {
                     Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(result));
                     startActivity(myIntent);
 
@@ -46,6 +88,38 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+
+        binding.showAdvancedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.showAdvancedButton.setVisibility(View.GONE);
+                binding.advancedLayout.setVisibility(View.VISIBLE);
+                advancedParams = true;
+            }
+        });
+
+        // Set up users list
+        ArrayAdapter<AvailableUser> usersAdapter = new ArrayAdapter<AvailableUser>(getApplicationContext(), android.R.layout.simple_spinner_item, 0, Constants.AVAILABLE_USERS);
+        Spinner spinner = findViewById(R.id.users_spinner);
+        spinner.setAdapter(usersAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                authUser = Constants.AVAILABLE_USERS.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spinner.setSelection(Constants.DEFAULT_USER_INDEX);
+
+        // Set decline scope modes
+        ArrayAdapter<String> scopeDeclineAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, 0, Constants.AVAILABLE_SCOPE_DECLINES);
+        Spinner scopeDeclineSpinner = findViewById(R.id.scope_decline_spinner);
+        scopeDeclineSpinner.setAdapter(scopeDeclineAdapter);
+
     }
 
     @Override

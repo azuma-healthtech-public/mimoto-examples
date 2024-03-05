@@ -42,7 +42,7 @@ export const exampleConfigs: ExampleOidcConfig[] = [
         supportLoginParams: true
     }, {
         name: "Live: OIDC PKCE - Web-App",
-        path: "oidc-live-layout-web-app",
+        path: "oidc-live-web-app",
         description: "OIDC flow using PKCE",
         redirect_uri: `${baseHostUrl}/oidc/signin/oidc-live-web-app`,
         authority: autority,

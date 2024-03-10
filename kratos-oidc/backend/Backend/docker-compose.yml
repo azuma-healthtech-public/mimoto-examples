@@ -1,0 +1,20 @@
+version: '3.4'
+
+networks:
+  sample_network:
+    name: sample_network
+    driver: bridge
+    attachable: true
+
+services:
+  backend.api:
+    container_name: backend.api
+    image: ${DOCKER_REGISTRY-}test-backend
+    restart: always
+    build:
+      context: .
+      dockerfile: Backend.Api/Dockerfile-vs
+    ports:
+      - 37505:80
+    networks:
+      - sample_network

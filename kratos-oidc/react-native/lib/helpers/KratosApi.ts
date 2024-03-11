@@ -84,20 +84,22 @@ export const continueOnError = (kratosResponseJson: any) => {
   };
 
   // get validation error messages and determine what failed --> this can be used to control the follow up process
-  for (const node of kratosResponseJson?.ui?.nodes) {
-    if (node.group === 'oidc' && node?.attributes?.name === 'traits.email') {
-      const ids = node?.messages?.map(x => x.id);
-      if (ids.indexOf(4000002) >= 0) {
-        kratosResult.error = 'email_missing';
-        return kratosResult;
-      }
-      if (ids.indexOf(9990001) >= 0) {
-        kratosResult.error = 'claims_missing';
-        return kratosResult;
-      }
-      if (ids.indexOf(9990002) >= 0) {
-        kratosResult.error = 'user_exists';
-        return kratosResult;
+  if (kratosResponseJson?.ui?.nodes) {
+    for (const node of kratosResponseJson.ui.nodes) {
+      if (node.group === 'oidc' && node?.attributes?.name === 'traits.email') {
+        const ids = node?.messages?.map(x => x.id);
+        if (ids.indexOf(4000002) >= 0) {
+          kratosResult.error = 'email_missing';
+          return kratosResult;
+        }
+        if (ids.indexOf(9990001) >= 0) {
+          kratosResult.error = 'claims_missing';
+          return kratosResult;
+        }
+        if (ids.indexOf(9990002) >= 0) {
+          kratosResult.error = 'user_exists';
+          return kratosResult;
+        }
       }
     }
   }

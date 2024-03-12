@@ -75,7 +75,7 @@ android {
 
     namespace "com.appauthcodeexchange"
     defaultConfig {
-        applicationId "com.appauthcodeexchange"
+        applicationId "com.mimoto.example.rn.appauthce"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80F871C12BA1DB7600D6C2A5 /* AvailableUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F871C02BA1DB7600D6C2A5 /* AvailableUsers.swift */; };
+		80F871C32BA1E2FD00D6C2A5 /* ScopeDeclineMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F871C22BA1E2FD00D6C2A5 /* ScopeDeclineMode.swift */; };
 		A073898E2B21E63200F822B4 /* ios_gematik_mockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A073898D2B21E63200F822B4 /* ios_gematik_mockApp.swift */; };
 		A07389902B21E63200F822B4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A073898F2B21E63200F822B4 /* ContentView.swift */; };
 		A07389922B21E63300F822B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A07389912B21E63300F822B4 /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		80F871C02BA1DB7600D6C2A5 /* AvailableUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableUsers.swift; sourceTree = "<group>"; };
+		80F871C22BA1E2FD00D6C2A5 /* ScopeDeclineMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopeDeclineMode.swift; sourceTree = "<group>"; };
 		A073898A2B21E63200F822B4 /* mimoto.example.gematikmock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mimoto.example.gematikmock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A073898D2B21E63200F822B4 /* ios_gematik_mockApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_gematik_mockApp.swift; sourceTree = "<group>"; };
 		A073898F2B21E63200F822B4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,6 +63,8 @@
 				A073898F2B21E63200F822B4 /* ContentView.swift */,
 				A07389912B21E63300F822B4 /* Assets.xcassets */,
 				A07389932B21E63300F822B4 /* Preview Content */,
+				80F871C02BA1DB7600D6C2A5 /* AvailableUsers.swift */,
+				80F871C22BA1E2FD00D6C2A5 /* ScopeDeclineMode.swift */,
 			);
 			path = mimoto.example.gematikmock;
 			sourceTree = "<group>";
@@ -141,7 +147,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80F871C32BA1E2FD00D6C2A5 /* ScopeDeclineMode.swift in Sources */,
 				A07389902B21E63200F822B4 /* ContentView.swift in Sources */,
+				80F871C12BA1DB7600D6C2A5 /* AvailableUsers.swift in Sources */,
 				A073898E2B21E63200F822B4 /* ios_gematik_mockApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,12 +282,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "mimoto.example.gematikmock/ios-gematik-mock.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"mimoto.example.gematikmock/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CRWTAA276J;
+				DEVELOPMENT_TEAM = CRWTAA276J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = mimoto.example.gematikmock/Info.plist;
@@ -292,11 +299,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mimoto.example.gematikmock.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Mimoto IDP Mock";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -309,12 +315,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "mimoto.example.gematikmock/ios-gematik-mock.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"mimoto.example.gematikmock/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CRWTAA276J;
+				DEVELOPMENT_TEAM = CRWTAA276J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = mimoto.example.gematikmock/Info.plist;
@@ -327,11 +332,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mimoto.example.gematikmock.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Mimoto IDP Mock";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

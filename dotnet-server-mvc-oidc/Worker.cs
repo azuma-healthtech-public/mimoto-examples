@@ -35,12 +35,12 @@ public class Worker : IHostedService
                 RedirectUris =
                 {
                     new Uri("http://localhost:1234/oidc/signin/oidc-dotnet-server-mvc-oidc"),
-                    new Uri("https://zealous-stone-0ec781310.4.azurestaticapps.net/oidc/signin/oidc-dotnet-server-mvc-oidc")
+                    new Uri("https://mimoto-react-examples.azuma-health.tech/oidc/signin/oidc-dotnet-server-mvc-oidc")
                 },
                 PostLogoutRedirectUris =
                 {
                     new Uri("http://localhost:1234/oidc/signin/oidc-dotnet-server-mvc-oidc"),
-                    new Uri("https://zealous-stone-0ec781310.4.azurestaticapps.net/oidc/signin/oidc-dotnet-server-mvc-oidc")
+                    new Uri("https://mimoto-react-examples.azuma-health.tech/oidc/signin/oidc-dotnet-server-mvc-oidc")
                 },
                 Permissions =
                 {

@@ -80,7 +80,7 @@ app.use('/authorization-code/callback',
 
 // this is used to exchange for token
 // how to test:
-// (1) go to https://zealous-stone-0ec781310.4.azurestaticapps.net/oidc-live and click on login and continue untill you are redirected back and see the tokens
+// (1) go to https://mimoto-react-examples.azuma-health.tech/oidc-live and click on login and continue untill you are redirected back and see the tokens
 // (2) open http://localhost:3000/token-exchange?idToken=ID_token
 // (3) you should be redirected to /profile and see email
 app.get('/token-exchange',

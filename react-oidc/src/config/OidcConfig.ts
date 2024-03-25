@@ -92,28 +92,4 @@ export const exampleConfigs: ExampleOidcConfig[] = [
         executeLogout: true,
         supportLoginParams: false
     },
-    {
-        name: "Local: OIDC via dotnet-server-mvc-oidc",
-        path: "oidc-dotnet-server-mvc-oidc",
-        description: "OIDC flow via dotnet-server-mvc-oidc example (needs to be started locally)",
-        redirect_uri: `${baseHostUrl}/oidc/signin/oidc-dotnet-server-mvc-oidc`,
-        authority: "https://localhost:44313",
-        client_id: "6231564A5-E7FE-42CB-B10D-61EF6A8F3654",
-        scope: "openid",
-        executeLogout: true,
-        supportLoginParams: false
-    },
-    {
-        name: "Local: OIDC via laravel-passport-oidc",
-        path: "oidc-laravel-passport-oidc",
-        description: "OIDC flow via laravel-passport-oidc example (needs to be started locally)",
-        redirect_uri: `${baseHostUrl}/oidc/signin/oidc-laravel-passport-oidc`,
-        authority: "http://localhost:8000",
-        authorizeUrl: "http://localhost:8000/oauth/authorize",
-        tokenUrl: "http://localhost:8000/oauth/token",
-        client_id: "7",
-        scope: "openid",
-        executeLogout: true,
-        supportLoginParams: false
-    },
 ];

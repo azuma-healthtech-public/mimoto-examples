@@ -23,6 +23,13 @@
                 ]
             }, {
                 "appIDs": [
+                    "CRWTAA276J.com.example.mimoto.faflutterce"
+                ],
+                "paths": [
+                    "/fa-flutter-ce/*"
+                ]
+            }, {
+                "appIDs": [
                     "CRWTAA276J.com.mimoto.example.diga.ios",
                     "CRWTAA276J.com.mimoto.example.ionic.cordova"
                 ],

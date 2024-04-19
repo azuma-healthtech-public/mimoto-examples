@@ -72,6 +72,9 @@ class MimotoProvider extends AbstractProvider implements ProviderInterface
         // Optional, if AT is used later, it should be verified
         // $decodedAt = JWT::decode($accessToken, $this->keySet);
         
+
+        JWT::$leeway = 5;
+
         // Verify ID token
         // verification works, but json can not be mapped to php object for some reason ?!
         JWT::decode($idToken, $this->keySet);

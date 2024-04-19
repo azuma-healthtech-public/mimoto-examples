@@ -32,6 +32,7 @@ class MimotoValidationProvider
     public function validateAndDecodeMimotoToken($idToken){
         $user = [];
 
+        JWT::$leeway = 5;
         JWT::decode($idToken, $this->keySet);
         
         // decode ID

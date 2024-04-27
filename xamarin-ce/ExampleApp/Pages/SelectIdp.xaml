@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExampleApp.Pages.SelectIdp">
+    <ContentPage.Content>
+
+        <Grid RowDefinitions="*, Auto, *"
+          BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}">
+            <ActivityIndicator x:Name="BusyIndicator"  Grid.Row="1" IsVisible="True" IsRunning="True"
+                Color="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
+
+            <ListView x:Name="IdpList" IsVisible="False" Grid.Row="1" RowHeight="70" VerticalOptions="FillAndExpand" SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="5">
+                                <Button
+                                    Padding="0"
+                                    Style="{StaticResource Base_Button}"
+                                    Margin="20, 0, 20, 0"
+                                    BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
+                                    Text="{Binding OrganizationName}" Clicked="IdpEntity_Clicked" CommandParameter="{Binding Issuer}"
+                                    VerticalOptions="End"></Button>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

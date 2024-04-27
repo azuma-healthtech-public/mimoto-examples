@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExampleApp.Pages.Welcome">
+    <ContentPage.Content>
+        <Grid
+            BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}"
+            RowDefinitions="Auto, Auto, Auto, Auto, *, Auto"
+            Padding="20, 20, 20, 0">
+            <Grid
+                Grid.Row="0"
+                RowDefinitions="Auto, Auto"
+                Margin="0, 0, 0, 10"
+                HorizontalOptions="Start">
+                <Label
+                    Grid.Row="0"
+                    Text="Email"
+                    FontSize="{StaticResource Subtitle1FontSize}"
+                    FontFamily="FontAwesome_Solid"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"></Label>
+                <Label
+                    Grid.Row="1"
+                    Style="{StaticResource Body1_MulishRegular}"
+                    x:Name="EmailLabel" 
+                    Margin="10, 0, 0, 0"
+                    VerticalOptions="Center"/>
+            </Grid>
+            <Grid
+                Grid.Row="1"
+                RowDefinitions="Auto, Auto"
+                Margin="0, 0, 0, 10"
+                HorizontalOptions="Start">
+                <Label
+                    Grid.Row="0"
+                    Text="KVNR"
+                    FontSize="{StaticResource Subtitle1FontSize}"
+                    FontFamily="FontAwesome_Solid"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"></Label>
+                <Label
+                    Grid.Row="1"
+                    Style="{StaticResource Body1_MulishRegular}"
+                    x:Name="KvnrLabel" 
+                    Margin="10, 0, 0, 0"
+                    VerticalOptions="Center"/>
+            </Grid>
+            <Grid
+                Grid.Row="2"
+                RowDefinitions="Auto, Auto"
+                Margin="0, 0, 0, 10"
+                HorizontalOptions="Start">
+                <Label
+                    Grid.Row="0"
+                    Text="Sub (unqiue)"
+                    FontSize="{StaticResource Subtitle1FontSize}"
+                    FontFamily="FontAwesome_Solid"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"></Label>
+                <Label
+                    Grid.Row="1"
+                    Style="{StaticResource Body1_MulishRegular}"
+                    x:Name="SubUniqueLabel" 
+                    Margin="10, 0, 0, 0"
+                    VerticalOptions="Center"/>
+            </Grid>
+            <Grid
+                Grid.Row="3"
+                RowDefinitions="Auto, Auto"
+                Margin="0, 0, 0, 10"
+                HorizontalOptions="Start">
+                <Label
+                    Grid.Row="0"
+                    Text="Provider"
+                    FontSize="{StaticResource Subtitle1FontSize}"
+                    FontFamily="FontAwesome_Solid"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"></Label>
+                <Label
+                    Grid.Row="1"
+                    Style="{StaticResource Body1_MulishRegular}"
+                    x:Name="ProviderLabel" 
+                    Margin="10, 0, 0, 0"
+                    VerticalOptions="Center"/>
+            </Grid>
+
+            <Button
+                BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
+                Clicked="Button_Clicked"
+                Grid.Row="5"
+                Margin="20, 0, 20, 30"
+                Text="Reset"
+                VerticalOptions="End"
+                Style="{StaticResource Base_Button}"></Button>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

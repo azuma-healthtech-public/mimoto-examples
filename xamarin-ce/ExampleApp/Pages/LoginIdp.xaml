@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExampleApp.Pages.LoginIdp">
+    <ContentPage.Content>
+
+        <Grid RowDefinitions="*, Auto, 30, Auto, *" 
+              BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}">
+            
+            <ActivityIndicator Grid.Row="1" x:Name="BusyIndicator" IsVisible="True" IsRunning="True"
+                Color="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
+
+            <Button
+                BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
+                Grid.Row="3"  Text="Cancel" Clicked="CancelButton_Clicked"
+                Margin="20, 0, 20, 30"
+                VerticalOptions="End"
+                Style="{StaticResource Base_Button}"></Button>
+        </Grid>
+        
+    </ContentPage.Content>
+</ContentPage>

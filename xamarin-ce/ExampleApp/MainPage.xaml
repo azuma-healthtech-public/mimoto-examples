@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExampleApp.MainPage">
+
+    <Grid RowDefinitions="*, Auto, Auto, Auto, *"
+          BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}">
+        <Label
+                Grid.Row="1"
+                HorizontalTextAlignment="Center"
+                Margin="30, 20, 30, 10"
+                Style="{StaticResource Headline4_MulishBlack}"
+                Text="azuma mimoto - Health-ID as a Service"></Label>
+        <Label
+                Grid.Row="2"
+                HorizontalTextAlignment="Center"
+                Margin="0, 0, 0, 30"
+                Style="{StaticResource Body1_MulishRegular}"
+                Text="Xamarin Forms Integration Example"
+                TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"></Label>
+        <Button
+                BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
+                Clicked="Button_Clicked"
+                Grid.Row="3"
+                Margin="20, 0, 20, 30"
+                Text="Login with Gesundheits-ID"
+                VerticalOptions="End"
+                Style="{StaticResource Base_Button}"></Button>
+    </Grid>
+</ContentPage>

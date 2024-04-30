@@ -3,7 +3,8 @@
         "details": [
             {
                 "appIDs": [
-                    "CRWTAA276J.com.mimoto.example.gematikmock.ios"
+                    "CRWTAA276J.com.mimoto.example.gematikmock.ios",
+		    "66YR5G34WJ.com.mimoto.example.gematikmock.ios"
                 ],
                 "paths": [
                     "*"

@@ -9,16 +9,6 @@ class RodauthMain < Rodauth::Rails::Auth
       :change_login, :verify_login_change, :close_account,
       :omniauth
 
-      omniauth_provider :facebook,
-        Rails.application.credentials.facebook[:app_id],
-        Rails.application.credentials.facebook[:app_secret],
-        scope: "email"
-
-      omniauth_provider :google_oauth2,
-        Rails.application.credentials.google[:client_id],
-        Rails.application.credentials.google[:client_secret],
-        name: :google # rename it from "google_oauth2"
-
       omniauth_provider :openid_connect,
         name: :mimoto,
         issuer: "https://mimoto-test.pie.azuma-health.tech/",
@@ -54,7 +44,7 @@ class RodauthMain < Rodauth::Rails::Auth
         #Rails.logger.info omniauth_auth["extra"]
         #Rails.logger.info omniauth_auth["extra"]["raw_info"]
         #Rails.logger.info omniauth_auth["extra"]["raw_info"]["urn:telematik:claims:email"]
-        
+
         omniauth_info['email'] = omniauth_auth["extra"]["raw_info"]["urn:telematik:claims:email"]
       end
     end

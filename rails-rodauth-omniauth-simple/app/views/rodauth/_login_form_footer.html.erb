@@ -6,17 +6,9 @@
       <li><%= link_to text, link %></li>
     <% end %>
 
-     <li>
-    <%= button_to "Login via Facebook", rodauth.omniauth_request_path(:facebook),
-      method: :post, data: { turbo: false }, class: "btn btn-link p-0" %>
-  </li>
-  <li>
-    <%= button_to "Login via Google", rodauth.omniauth_request_path(:google),
-      method: :post, data: { turbo: false }, class: "btn btn-link p-0" %>
-  </li>
-  <li>
-    <%= button_to "Login via Mimoto", rodauth.omniauth_request_path(:mimoto),
-      method: :post, data: { turbo: false }, class: "btn btn-link p-0" %>
-  </li>
+    <li>
+      <%= button_to "Login via Mimoto", rodauth.omniauth_request_path(:mimoto),
+        method: :post, data: { turbo: false }, class: "btn btn-link p-0" %>
+    </li>
   </ul>
 <% end %>

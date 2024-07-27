@@ -2,7 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Button, ListItem} from '@rneui/themed';
 import React from 'react';
 import {CommonActions} from '@react-navigation/native';
-import {Card, } from '@rneui/base';
+import {Card} from '@rneui/base';
 
 export function Welcome({route, navigation}) {
   const {user} = route.params;
@@ -22,7 +22,7 @@ export function Welcome({route, navigation}) {
             <ListItem.Accordion
               content={
                 <ListItem.Content>
-                  <ListItem.Title>All claims</ListItem.Title>
+                  <ListItem.Title>Further claims</ListItem.Title>
                 </ListItem.Content>
               }
               isExpanded={expanded}

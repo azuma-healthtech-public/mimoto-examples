@@ -1,9 +1,9 @@
 import {StyleSheet, View} from 'react-native';
 import {Button, Text} from '@rneui/base';
-import {Card} from "@rneui/themed";
-import React from "react";
-import {metadataRU,  metadataTU, metadataTUMock, selectedMetadata} from "./data/Constants.ts";
-import {selectDemo} from "./data/Data.ts";
+import {Card} from '@rneui/themed';
+import React from 'react';
+import {metadataRU, metadataTU, metadataTUMock} from './data/Constants.ts';
+import {selectDemo} from './data/Data.ts';
 
 export function Home({navigation}) {
   return (
@@ -14,40 +14,37 @@ export function Home({navigation}) {
         </View>
 
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <Card >
+          <Card>
             <Card.Title>(RU): Using gematik Authenticator</Card.Title>
             <Card.Divider />
             <Button
-                onPress={() => {
-                  selectDemo(metadataRU)
-                  navigation.navigate('SelectIdp')
-                }
-                }
-                title="Login with Gesundsheits-ID"
+              onPress={() => {
+                selectDemo(metadataRU);
+                navigation.navigate('SelectIdp');
+              }}
+              title="Login with Gesundsheits-ID"
             />
           </Card>
           <Card>
             <Card.Title>(TU): Using gematik Authenticator</Card.Title>
             <Card.Divider />
             <Button
-                onPress={() => {
-                    selectDemo(metadataTU)
-                    navigation.navigate('SelectIdp')
-                  }
-                }
-                title="Login with Gesundsheits-ID"
+              onPress={() => {
+                selectDemo(metadataTU);
+                navigation.navigate('SelectIdp');
+              }}
+              title="Login with Gesundsheits-ID"
             />
           </Card>
-          <Card >
+          <Card>
             <Card.Title>(TU): Using mock Authenticator</Card.Title>
             <Card.Divider />
             <Button
-                onPress={() => {
-                  selectDemo(metadataTUMock)
-                  navigation.navigate('SelectIdp')
-                }
-                }
-                title="Login with Gesundsheits-ID"
+              onPress={() => {
+                selectDemo(metadataTUMock);
+                navigation.navigate('SelectIdp');
+              }}
+              title="Login with Gesundsheits-ID"
             />
           </Card>
         </View>

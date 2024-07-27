@@ -4,16 +4,15 @@ import React, {useCallback, useState} from 'react';
 import {
   executeAuthRequest,
   executeCodeExchange,
-  pkceClient,
   TokenResponse,
 } from './helpers/Api';
 import {decodeToken} from './helpers/Token';
 import {Button} from '@rneui/themed';
 import {Text} from '@rneui/base';
 import {CommonActions} from '@react-navigation/native';
-import {clientId, clientIdSimulation, metadata} from './Constants';
 import {WebView} from 'react-native-webview';
 import {ShouldStartLoadRequest} from 'react-native-webview/src/WebViewTypes';
+import {getCurrentData} from './data/Data.ts';
 
 enum Stage {
   None,
@@ -45,9 +44,9 @@ export function LoginIdp({route, navigation}) {
     const startAuth = () => {
       console.log('Starting auth');
       try {
-        pkceClient.reset(); // ensure we always use new state/pkce values
+        getCurrentData().pkceClient.reset(); // ensure we always use new state/pkce values
 
-        const url = executeAuthRequest(pkceClient);
+        const url = executeAuthRequest(getCurrentData().pkceClient);
         if (url) {
           console.log('Auth request successful');
           setAuthUrl(url);
@@ -73,7 +72,10 @@ export function LoginIdp({route, navigation}) {
       console.log('Starting code exchange');
 
       try {
-        const result = await executeCodeExchange(pkceClient, deepLink);
+        const result = await executeCodeExchange(
+          getCurrentData().pkceClient,
+          deepLink,
+        );
         if (result) {
           console.log('Code exchange successful');
           handleTokenReceived(result);
@@ -91,41 +93,14 @@ export function LoginIdp({route, navigation}) {
     }
   }, [handleTokenReceived, navigation, deepLink, stage]);
 
-  const finalizeSimulation = (url: string) => {
-    pkceClient
-      .exchangeForAccessToken(url)
-      .then(result => {
-        if (result) {
-          console.log('Code exchange successful');
-          handleTokenReceived(result as TokenResponse);
-        } else {
-          setError('Could not authorize. Please try again later...');
-        }
-      })
-      .catch(r => {
-        console.log(r);
-        setError('Could not authorize. Please try again later...');
-      });
-  };
-
   const handleShouldStartLoadWithRequest = (event: ShouldStartLoadRequest) => {
     const {url} = event;
     if (!url) {
       return false;
     }
 
-    if (url.startsWith(metadata.mimoto_endpoint)) {
+    if (url.startsWith(getCurrentData().metadata.mimoto_endpoint)) {
       return true;
-    }
-
-    //Support for simulation flow
-    if (
-      clientId === clientIdSimulation &&
-      url.startsWith('https://mimoto-example-app.azuma-health.tech/app/ce')
-    ) {
-      console.log('Finalize simulation');
-      finalizeSimulation(url);
-      return false;
     }
 
     console.log('Opening IDP');

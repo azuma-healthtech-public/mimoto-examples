@@ -1,27 +1,9 @@
 import PKCE from './js-pkce/PKCE';
-import {InMemoryStorage} from './InMemoryStorage';
-import {
-  clientId,
-  clientIdSimulation,
-  metadata,
-  redirectUrl,
-  scopes,
-} from '../Constants';
+
 import uuid from 'react-native-uuid';
 import {URL} from 'react-native-url-polyfill';
-
-function createPkceClient(): PKCE {
-  return new PKCE({
-    client_id: clientId,
-    redirect_uri: redirectUrl,
-    authorization_endpoint: metadata.authorization_endpoint,
-    token_endpoint: metadata.token_endpoint,
-    requested_scopes: scopes,
-    storage: new InMemoryStorage(),
-  });
-}
-
-export const pkceClient = createPkceClient();
+import {getCurrentData} from '../data/Data.ts';
+import ITokenResponse from './js-pkce/ITokenResponse.ts';
 
 export interface Idp {
   organizationName: string;
@@ -34,7 +16,7 @@ export const executeAuthRequest = (pkce: PKCE) => {
   });
 };
 
-export interface TokenResponse {
+export interface TokenResponse extends ITokenResponse {
   access_token: string;
   id_token: string;
   expires_in: number;
@@ -43,7 +25,7 @@ export interface TokenResponse {
 
 const executeCodeExchangeMimotoDeepLink = async (deepLink: string) => {
   // internal mimoto exchange
-  let response = await fetch(metadata.exchange_endpoint, {
+  let response = await fetch(getCurrentData().metadata.exchange_endpoint, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -51,7 +33,7 @@ const executeCodeExchangeMimotoDeepLink = async (deepLink: string) => {
     },
     body: JSON.stringify({
       redirectUrl: deepLink,
-      clientId: clientId,
+      clientId: getCurrentData().metadata.clientId,
     }),
   });
   if (response.status !== 200) {
@@ -67,7 +49,7 @@ const executeCodeExchangeMimotoCodeState = async (deepLink: string) => {
   const state = url.searchParams.get('state');
 
   // internal mimoto exchange
-  let response = await fetch(metadata.exchange_endpoint, {
+  let response = await fetch(getCurrentData().metadata.exchange_endpoint, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -76,7 +58,7 @@ const executeCodeExchangeMimotoCodeState = async (deepLink: string) => {
     body: JSON.stringify({
       code: code,
       state: state,
-      clientId: clientId,
+      clientId: getCurrentData().metadata.clientId,
     }),
   });
   if (response.status !== 200) {

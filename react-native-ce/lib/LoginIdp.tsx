@@ -10,7 +10,7 @@ import {decodeToken} from './helpers/Token';
 import {Button} from '@rneui/themed';
 import {Text} from '@rneui/base';
 import {CommonActions} from '@react-navigation/native';
-import {getCurrentData} from "./data/Data.ts";
+import {getCurrentData} from './data/Data.ts';
 
 enum Stage {
   None,
@@ -42,7 +42,10 @@ export function LoginIdp({route, navigation}) {
       try {
         getCurrentData().pkceClient.reset(); // ensure we always use new state/pkce values
 
-        const parUrl = await executeAuthRequest(getCurrentData().pkceClient, issuer);
+        const parUrl = await executeAuthRequest(
+          getCurrentData().pkceClient,
+          issuer,
+        );
         if (parUrl) {
           console.log('Par request successful');
           // valid redirect, open authenticator url
@@ -71,7 +74,10 @@ export function LoginIdp({route, navigation}) {
       console.log('Starting code exchange');
 
       try {
-        const result = await executeCodeExchange(getCurrentData().pkceClient, deepLink);
+        const result = await executeCodeExchange(
+          getCurrentData().pkceClient,
+          deepLink,
+        );
         if (result) {
           console.log('Code exchange successful');
           handleTokenReceived(result);

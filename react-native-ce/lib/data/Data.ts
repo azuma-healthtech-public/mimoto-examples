@@ -1,25 +1,25 @@
-import PKCE from "../helpers/js-pkce/PKCE.ts";
-import {Metadata, metadataTU, redirectUrl, scopes} from "./Constants.ts";
-import {InMemoryStorage} from "../helpers/InMemoryStorage.ts";
+import PKCE from '../helpers/js-pkce/PKCE.ts';
+import {Metadata, metadataTU, redirectUrl, scopes} from './Constants.ts';
+import {InMemoryStorage} from '../helpers/InMemoryStorage.ts';
 
 export interface CurrentData {
-  pkceClient: PKCE,
-  metadata: Metadata
+  pkceClient: PKCE;
+  metadata: Metadata;
 }
 
-const currentData= {
+const currentData = {
   current: {
     pkceClient: createPkceClient(metadataTU),
-    metadata: metadataTU
-  }
-}
+    metadata: metadataTU,
+  },
+};
 
 function createPkceClient(metadata: Metadata): PKCE {
   return new PKCE({
     client_id: metadata.clientId,
     redirect_uri: redirectUrl,
-    authorization_endpoint:  metadata.authorization_endpoint,
-    token_endpoint:  metadata.token_endpoint,
+    authorization_endpoint: metadata.authorization_endpoint,
+    token_endpoint: metadata.token_endpoint,
     requested_scopes: scopes,
     storage: new InMemoryStorage(),
   });
@@ -28,8 +28,8 @@ function createPkceClient(metadata: Metadata): PKCE {
 export function selectDemo(metadata: Metadata) {
   currentData.current = {
     pkceClient: createPkceClient(metadata),
-    metadata: metadata
-  }
+    metadata: metadata,
+  };
 }
 
 export function getCurrentData(): CurrentData {

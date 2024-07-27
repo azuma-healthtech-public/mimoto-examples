@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {Button, Card, ListItem} from '@rneui/themed';
 import {executeLoadIdps, Idp} from './helpers/Api';
 
-export function SelectIdp({navigation, route}) {
+export function SelectIdp({navigation}) {
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<Idp[]>([]);
 

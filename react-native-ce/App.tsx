@@ -13,7 +13,7 @@ function App(): React.JSX.Element {
   const linking = {
     prefixes: ['https://mimoto-example-app.azuma-health.tech/rn-ce'],
 
-    getStateFromPath: (path, _) => {
+    getStateFromPath: (path: string, _) => {
       console.log('Received deep link');
       if (path.toString().indexOf('/code/ce') === 0) {
         // optional, in case multiple links are supported

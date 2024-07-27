@@ -1,8 +1,8 @@
 import {StyleSheet, Text, View} from 'react-native';
-import {Button} from '@rneui/themed';
+import {Button, ListItem} from '@rneui/themed';
 import React from 'react';
 import {CommonActions} from '@react-navigation/native';
-import {Card, ListItem} from '@rneui/base';
+import {Card, } from '@rneui/base';
 
 export function Welcome({route, navigation}) {
   const {user} = route.params;

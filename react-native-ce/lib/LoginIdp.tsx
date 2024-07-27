@@ -3,16 +3,14 @@ import React, {useCallback, useState} from 'react';
 
 import {
   executeAuthRequest,
-  executeAuthRequestSimulation,
   executeCodeExchange,
-  pkceClient,
   TokenResponse,
 } from './helpers/Api';
 import {decodeToken} from './helpers/Token';
 import {Button} from '@rneui/themed';
 import {Text} from '@rneui/base';
 import {CommonActions} from '@react-navigation/native';
-import {clientId, clientIdSimulation} from './Constants';
+import {getCurrentData} from "./data/Data.ts";
 
 enum Stage {
   None,
@@ -42,21 +40,9 @@ export function LoginIdp({route, navigation}) {
     const startAuth = async () => {
       console.log('Starting auth');
       try {
-        pkceClient.reset(); // ensure we always use new state/pkce values
+        getCurrentData().pkceClient.reset(); // ensure we always use new state/pkce values
 
-        if (clientId === clientIdSimulation) {
-          const codeResponse = await executeAuthRequestSimulation(
-            pkceClient,
-            issuer,
-          );
-          const token = (await pkceClient.exchangeForAccessToken(
-            codeResponse!,
-          )) as TokenResponse;
-          handleTokenReceived(token);
-          return;
-        }
-
-        const parUrl = await executeAuthRequest(pkceClient, issuer);
+        const parUrl = await executeAuthRequest(getCurrentData().pkceClient, issuer);
         if (parUrl) {
           console.log('Par request successful');
           // valid redirect, open authenticator url
@@ -85,7 +71,7 @@ export function LoginIdp({route, navigation}) {
       console.log('Starting code exchange');
 
       try {
-        const result = await executeCodeExchange(pkceClient, deepLink);
+        const result = await executeCodeExchange(getCurrentData().pkceClient, deepLink);
         if (result) {
           console.log('Code exchange successful');
           handleTokenReceived(result);

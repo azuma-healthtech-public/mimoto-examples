@@ -1,9 +1,8 @@
 import PKCE from './js-pkce/PKCE';
 import uuid from 'react-native-uuid';
 import {URL} from 'react-native-url-polyfill';
-import ITokenResponse from "./js-pkce/ITokenResponse.ts";
-import {getCurrentData} from "../data/Data.ts";
-
+import ITokenResponse from './js-pkce/ITokenResponse.ts';
+import {getCurrentData} from '../data/Data.ts';
 
 export interface Idp {
   organizationName: string;
@@ -12,7 +11,9 @@ export interface Idp {
 
 export const executeLoadIdps = async () => {
   const response = await fetch(
-    `${ getCurrentData().metadata.idp_list_endpoint}?relayingPartyId=${getCurrentData().metadata.relayingPartyId}`,
+    `${getCurrentData().metadata.idp_list_endpoint}?relayingPartyId=${
+      getCurrentData().metadata.relayingPartyId
+    }`,
   );
   return (await response.json()) as Idp[];
 };
@@ -23,7 +24,7 @@ export const executeAuthRequest = async (pkce: PKCE, issuer: string) => {
     state: uuid.v4().toString(),
   });
 
-  // add &reponse_format=json to avoid automatic redirects, response in json format:
+  // add &response_format=json to avoid automatic redirects, response in json format:
   // { "url": "..." }
   const response = await fetch(`${result}&response_format=json`);
   const responseJson = await response.json();
@@ -87,19 +88,22 @@ const executeCodeExchangeMimotoCodeState = async (deepLink: string) => {
 };
 
 export const executeCodeExchange = async (pkce: PKCE, deepLink: string) => {
+  let externalCodeResponse;
+
   // Internal mimoto code exchange
-  // Using code + state
-  //const externalCodeResponse = await executeCodeExchangeMimotoCodeState(
-  //  deepLink,
-  //);
-  // Or full deep link
-  const externalCodeResponse = await executeCodeExchangeMimotoDeepLink(
-    deepLink,
-  );
+  if (!getCurrentData().metadata.exchangeViaRedirectUrl) {
+    // Using code + state
+    externalCodeResponse = await executeCodeExchangeMimotoCodeState(deepLink);
+  } else {
+    // Or full deep link
+    externalCodeResponse = await executeCodeExchangeMimotoDeepLink(deepLink);
+  }
+
   if (!externalCodeResponse) {
     return null;
   }
 
+  console.log(externalCodeResponse);
   console.log('Internal mimoto exchange successful');
 
   return (await pkce.exchangeForAccessToken(

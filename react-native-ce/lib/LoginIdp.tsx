@@ -46,6 +46,7 @@ export function LoginIdp({route, navigation}) {
           getCurrentData().pkceClient,
           issuer,
         );
+
         if (parUrl) {
           console.log('Par request successful');
           // valid redirect, open authenticator url

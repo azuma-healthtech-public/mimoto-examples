@@ -3,7 +3,6 @@
 // found in the LICENSE file.
 
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -64,33 +63,6 @@ class LoginFlowProvider {
       // If the server did not return a 200 OK response,
       // then throw an exception.
       throw Exception('Failed to get execute par');
-    }
-  }
-
-  Future<String?> executeAuthRequestSimulation() async {
-    if (stage != Stage.none) throw Exception("Unexpected stage ${stage}. Expected: ${Stage.none}");
-
-    stage = Stage.authRequest;
-
-    // (1) create auth url
-    grant =
-        oauth2.AuthorizationCodeGrant(MimotoConstants.clientId, Uri.parse(MimotoConstants.authorization_endpoint), Uri.parse(MimotoConstants.token_endpoint));
-
-    var initialAuthUrl = grant!.getAuthorizationUrl(Uri.parse(MimotoConstants.redirectUrl), scopes: MimotoConstants.scopes.toList(), state: state!);
-    var fullAuthUrl = "${initialAuthUrl.toString()}&provider=${provider!}";
-
-    // (2) open auth url without redirects --> this will return the par response from mimoto
-    final client = HttpClient();
-    var request = await client.getUrl(Uri.parse(fullAuthUrl));
-    request.followRedirects = false;
-
-    var response = await request.close();
-    if (response.statusCode == 302) {
-      return response.headers["Location"]?.single;
-    } else {
-      // If the server did not return a 200 OK response,
-      // then throw an exception.
-      throw Exception('Failed to execute auth request');
     }
   }
 

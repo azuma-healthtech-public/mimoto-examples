@@ -27,21 +27,6 @@ export class MimotoService {
 
         return response.status === 200 ? responseJson.url : null;
     }
-    async executeAuthRequestForParSimulation(authUrl: string): Promise<string> {
-        // the auth endpoint returns a 302 redirect
-        // did not find a way to disable automatic redirect following in HttpClient
-        // therefore using native http
-        this.nativeHttp.setFollowRedirect(false);
-
-        try {
-            const response = await this.nativeHttp.get(authUrl, {}, {});
-            return response.status === 302 ? response.headers?.location : null;
-        } catch (err) {
-            if (err?.status === 302) {
-                return err.status === 302 ? err.headers?.location : null;
-            }
-        }
-    }
 
     getAvailableIdps(): Promise<Idp[]> {
         return this.http.get<Idp[]>(

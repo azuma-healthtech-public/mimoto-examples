@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mimoto_flutter_ce/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -26,16 +25,6 @@ class _LoginIdpState extends State<LoginIdp> {
 
   executeAuth(LoginFlowProvider flow) async {
     try {
-      // Only for simulation flow
-      if (MimotoConstants.clientId == MimotoConstants.clientIdSimulation) {
-        final codeResponse = await flow.executeAuthRequestSimulation();
-        await flow.executeCodeExchangeInternal(Uri.parse(codeResponse!));
-        Future.delayed(const Duration(milliseconds: 500), () {
-          continueToWelcome();
-        });
-        return;
-      }
-
       final url = await flow.executeAuthRequest();
       if (url != null) {
         launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);

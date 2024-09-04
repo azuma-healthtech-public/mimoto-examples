@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthConfig, OAuthService} from 'angular-oauth2-oidc';
-import {authCodeFlowConfig, clientId, clientIdSimulation, metadata} from '../services/constants';
+import {authCodeFlowConfig, clientId, metadata} from '../services/constants';
 import {InAppBrowser} from '@ionic-native/in-app-browser/ngx';
 import {NavController} from '@ionic/angular';
 
@@ -28,16 +28,11 @@ export class HomePage implements OnInit {
                         browser._loadAfterBeforeload(evt.url);
                         console.log('mimoto link - open inapp');
                     } else {
-                        // @ts-ignore
-                        if (clientId === clientIdSimulation) { // SIMULATION only
-                            this.handleSimulationAuthCode(evt.url);
-                        } else {
-                            // open in platform
-                            console.log('open in platform');
+                        // open in platform
+                        console.log('open in platform');
 
-                            const platform = this.inAppBrowser.create(evt.url, '_system', {location: 'yes'});
-                            platform.show();
-                        }
+                        const platform = this.inAppBrowser.create(evt.url, '_system', {location: 'yes'});
+                        platform.show();
 
                         // for some reason, calling browser.close directly does not actually close browser on IOS
                         setTimeout(() => {
@@ -52,17 +47,5 @@ export class HomePage implements OnInit {
         };
         this.oauthService.configure(config);
         this.oauthService.initCodeFlow();
-    }
-
-    async handleSimulationAuthCode(url: string) {
-        const params = (new URL(url)).searchParams;
-        await this.oauthService.tryLoginCodeFlow({customHashFragment: `#${params.toString()}`});
-        console.log('DONE internal code exchange');
-
-        // FIXME: here you can exchange ID/AT for your own token for evaluation
-        //const id = this.oauthService.getIdToken();
-        //const at = this.oauthService.getAccessToken();
-
-        await this.navController.navigateRoot(['/welcome']);
     }
 }

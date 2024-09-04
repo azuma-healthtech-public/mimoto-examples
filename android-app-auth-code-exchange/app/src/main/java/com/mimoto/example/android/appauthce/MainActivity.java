@@ -44,20 +44,20 @@ public class MainActivity extends AppCompatActivity {
 
         AuthorizationServiceConfiguration serviceConfig =
                 new AuthorizationServiceConfiguration(
-                        Uri.parse("https://mimoto-test.pie.azuma-health.tech/connect/auth"), // authorization endpoint
-                        Uri.parse("https://mimoto-test.pie.azuma-health.tech/connect/token")); // token endpoint
+                        Uri.parse(Constants.AuthorizationUrl), // authorization endpoint
+                        Uri.parse(Constants.TokenUrl)); // token endpoint
         AuthorizationRequest.Builder authRequestBuilder =
                 new AuthorizationRequest.Builder(
                         serviceConfig, // the authorization service configuration
-                        "b664b9ab-1484-4228-b546-7b173a860f44", // the client ID, typically pre-registered and static
+                        Constants.ClientId,
                         ResponseTypeValues.CODE, // the response_type value: we want a code
-                        Uri.parse("https://mimoto-example-app.azuma-health.tech/app/ce")); // the redirect URI to which the auth response is sent
+                        Uri.parse(Constants.RedirectUrl)); // the redirect URI to which the auth response is sent
         binding.loginButton.setOnClickListener(v -> {
             binding.progressIndicator.setVisibility(View.VISIBLE);
             binding.loginButton.setVisibility(View.INVISIBLE);
 
             AuthorizationRequest authRequest = authRequestBuilder
-                    .setScope("openid urn:telematik:versicherter urn:telematik:email")
+                    .setScope(Constants.Scopes)
                     .build();
 
             Intent authIntent = authService.getAuthorizationRequestIntent(authRequest);

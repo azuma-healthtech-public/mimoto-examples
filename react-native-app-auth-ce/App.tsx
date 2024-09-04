@@ -108,18 +108,6 @@ function App(): JSX.Element {
                   title="Login with Gesundsheits-ID"
                 />
               </AppSection>
-              <AppSection title="Login (gematik)">
-                <Button
-                  onPress={() => handleAuthorize(configMimotoGematik)}
-                  title="Login with Gesundsheits-ID"
-                />
-              </AppSection>
-              <AppSection title="Login (gematik, Simulation)">
-                <Button
-                  onPress={() => handleAuthorize(configMimotoGematikSimulation)}
-                  title="Login with Gesundsheits-ID"
-                />
-              </AppSection>
             </>
           )}
         </View>

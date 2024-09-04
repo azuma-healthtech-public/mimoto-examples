@@ -69,15 +69,17 @@ const executeCodeExchangeMimotoCodeState = async (deepLink: string) => {
 };
 
 export const executeCodeExchange = async (pkce: PKCE, deepLink: string) => {
+  let externalCodeResponse;
+
   // Internal mimoto code exchange
-  // Using code + state
-  //const externalCodeResponse = await executeCodeExchangeMimotoCodeState(
-  //  deepLink,
-  //);
-  // Or full deep link
-  const externalCodeResponse = await executeCodeExchangeMimotoDeepLink(
-    deepLink,
-  );
+  if (!getCurrentData().metadata.exchangeViaRedirectUrl) {
+    // Using code + state
+    externalCodeResponse = await executeCodeExchangeMimotoCodeState(deepLink);
+  } else {
+    // Or full deep link
+    externalCodeResponse = await executeCodeExchangeMimotoDeepLink(deepLink);
+  }
+
   if (!externalCodeResponse) {
     return null;
   }

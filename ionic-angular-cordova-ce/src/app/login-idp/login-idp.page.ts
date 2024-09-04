@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MimotoService} from '../services/mimoto.service';
 import {LoadingController, NavController} from '@ionic/angular';
 import {AuthConfig, OAuthService} from 'angular-oauth2-oidc';
-import {authCodeFlowConfig, clientId, clientIdSimulation} from '../services/constants';
+import {authCodeFlowConfig, clientId} from '../services/constants';
 import {InAppBrowser} from '@ionic-native/in-app-browser/ngx';
 
 @Component({
@@ -48,12 +48,7 @@ export class LoginIdpPage implements OnInit {
                     // as we pre-selected provider already, we can start auth process manually
                     // this will return a PAR url, that we can open --> should lead directly to authenticator app
 
-                    // @ts-ignore
-                    if (clientId === clientIdSimulation) { // SIMULATION only
-                        this.startAuthMimotoSimulation(loading, uri);
-                    } else {
-                        this.startAuthMimotoPar(loading, uri); // LIVE only
-                    }
+                    this.startAuthMimotoPar(loading, uri); // LIVE only
                 }
             };
             this.oauthService.configure(config);
@@ -78,20 +73,6 @@ export class LoginIdpPage implements OnInit {
             this.error = 'Could not login ...';
         }
         await loading.dismiss();
-    }
-
-    async startAuthMimotoSimulation(loading: HTMLIonLoadingElement, url: string) {
-        const result = await this.mimotoService.executeAuthRequestForParSimulation(url);
-
-        const params = (new URL(result)).searchParams;
-        await this.oauthService.tryLoginCodeFlow({customHashFragment: `#${params.toString()}`});
-
-        // FIXME: here you can exchange ID/AT for your own token for evaluation
-        //const id = this.oauthService.getIdToken();
-        //const at = this.oauthService.getAccessToken();
-
-        await loading.dismiss();
-        await this.navController.navigateRoot(['/welcome']);
     }
 
     async cancel() {

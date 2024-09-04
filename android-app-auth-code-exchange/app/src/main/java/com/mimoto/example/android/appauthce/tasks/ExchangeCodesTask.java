@@ -3,6 +3,7 @@ package com.mimoto.example.android.appauthce.tasks;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.mimoto.example.android.appauthce.Constants;
 
 import java.util.concurrent.Callable;
 
@@ -27,13 +28,13 @@ public class ExchangeCodesTask implements Callable<String> {
 
         Gson gson = new Gson();
         ExchangeRequestData requestData = new ExchangeRequestData();
-        requestData.setClientId("b664b9ab-1484-4228-b546-7b173a860f44");
+        requestData.setClientId(Constants.ClientId);
         requestData.setRedirectUrl(appLinkData.toString());
         String json = gson.toJson(requestData);
 
         RequestBody body = RequestBody.create(json, MediaType.get("application/json"));
         Request request = new Request.Builder()
-                .url("https://mimoto-test.pie.azuma-health.tech/oidcf/exchange/mobile")
+                .url(Constants.ExchangeUrl)
                 .post(body)
                 .build();
 

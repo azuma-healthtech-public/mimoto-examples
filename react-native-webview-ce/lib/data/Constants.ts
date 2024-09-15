@@ -88,9 +88,14 @@ export interface Metadata {
   exchange_endpoint: string;
   idp_list_endpoint: string;
   relayingPartyId: string;
+
+  mimoto_endpoint: string;
+
+  redirectUri?: string;
 }
 
 export const metadata: Metadata[] = [
+  ...metadataDevelopment,
   metadataRU,
   metadataTU,
   metadataTUMockL1,

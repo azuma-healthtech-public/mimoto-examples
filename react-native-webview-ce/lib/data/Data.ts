@@ -17,7 +17,7 @@ const currentData = {
 function createPkceClient(metadata: Metadata): PKCE {
   return new PKCE({
     client_id: metadata.clientId,
-    redirect_uri: redirectUrl,
+    redirect_uri: metadata.redirectUri ?? redirectUrl,
     authorization_endpoint: metadata.authorization_endpoint,
     token_endpoint: metadata.token_endpoint,
     requested_scopes: scopes,

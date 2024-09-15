@@ -1,3 +1,5 @@
+import {metadataDevelopment} from './Constants.local.ts';
+
 export const scopes = 'openid urn:telematik:versicherter urn:telematik:email';
 export const redirectUrl =
   'https://mimoto-example-app.azuma-health.tech/app/ce';
@@ -55,6 +57,19 @@ export const metadataRU = {
   idp_list_endpoint: 'https://mimoto-ref.pie.azuma-health.tech/api/v1/idps',
   relayingPartyId: 'c36eb4fa-0f55-46f2-8e69-e52ff6013022',
 };
+export const metadataRUMock = {
+  title: '(RU): Using mock Authenticator',
+  exchangeViaRedirectUrl: true,
+
+  clientId: 'a19774db-5e6a-4e74-a28a-9a584e545ae3',
+  authorization_endpoint:
+    'https://mimoto-ref.pie.azuma-health.tech/connect/auth',
+  token_endpoint: 'https://mimoto-ref.pie.azuma-health.tech/connect/token',
+  exchange_endpoint:
+    'https://mimoto-ref.pie.azuma-health.tech/oidcf/exchange/mobile',
+  idp_list_endpoint: 'https://mimoto-ref.pie.azuma-health.tech/api/v1/idps',
+  relayingPartyId: 'c36eb4fa-0f55-46f2-8e69-e52ff6013022',
+};
 
 export interface Metadata {
   title: string;
@@ -66,10 +81,15 @@ export interface Metadata {
   exchange_endpoint: string;
   idp_list_endpoint: string;
   relayingPartyId: string;
+
+  redirectUri?: string;
 }
 
 export const metadata: Metadata[] = [
+  ...metadataDevelopment,
+
   metadataRU,
+  metadataRUMock,
   metadataTU,
   metadataTUMock,
   metadataTUSimulation,

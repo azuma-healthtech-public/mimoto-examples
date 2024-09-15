@@ -1,5 +1,3 @@
-import {metadataDevelopment} from './Constants.local.ts';
-
 export const scopes = 'openid urn:telematik:versicherter urn:telematik:email';
 export const redirectUrl =
   'https://mimoto-example-app.azuma-health.tech/app/ce';
@@ -95,7 +93,6 @@ export interface Metadata {
 }
 
 export const metadata: Metadata[] = [
-  ...metadataDevelopment,
   metadataRU,
   metadataTU,
   metadataTUMockL1,

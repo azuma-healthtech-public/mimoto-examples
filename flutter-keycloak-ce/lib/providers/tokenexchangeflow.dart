@@ -15,7 +15,7 @@ import '../model/exchange.dart';
 import '../model/token_exchange.dart';
 
 class TokenExchangeProvider {
-  static String tokenUrl = "https://ne-mimoto-examples-keycloak.azurewebsites.net/realms/mimoto-eid/protocol/openid-connect/token";
+  static String tokenUrl = "https://ne-mimoto-examples-keycloak.azurewebsites.net/realms/eid-mimoto-setup/protocol/openid-connect/token";
 
   static Future<TokenExchangeResponse> executeTokenExchange(String idToken) async {
 
@@ -26,7 +26,7 @@ class TokenExchangeProvider {
     // Hint: Before executing token exchange, you could als check if user already exists and if not, trigger the registration process
 
     String clientId = "token-exchange-client";
-    String clientSecret = "ccrlRFicMUXtqb3C0K7B5BEWRq2x2jH2";
+    String clientSecret = "vA8oST0B8JqZIrj76zNonXqnnQWe7i29";
 
     final response = await http.post(Uri.parse(tokenUrl),
         headers: <String, String>{

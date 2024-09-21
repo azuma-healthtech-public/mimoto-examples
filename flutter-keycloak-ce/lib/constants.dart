@@ -1,11 +1,7 @@
 class MimotoConstants {
-  // This is the client id from azuma demo relying party
-  static const clientId = 'aa1d0d62-fdc4-4023-9098-441bb0c48c1b';
+  static const clientId = '11186bbc-c07d-48ec-8ce5-8a9839e0ba0e';
 
-  // This is the client id from azuma simulation relying party
-  //static const clientId = 'de98a87b-4b92-4724-9d47-57213ddf7dff';
-
-  static const scopes = ['openid', 'urn:telematik:versicherter', 'urn:telematik:email'];
+  static const scopes = ['openid', 'urn:telematik:versicherter'];
   static const redirectUrl = 'https://mimoto-example-app.azuma-health.tech/app/ce';
 
   static const authorization_endpoint = 'https://mimoto-test.pie.azuma-health.tech/connect/auth';

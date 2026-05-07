@@ -26,6 +26,7 @@ struct ContentView: View
     
     @State private var showingAdvancedOptions = false
     @State private var overrideHealthIdText = ""
+    @State private var isLoading = false
     
     var body: some View {
         VStack {
@@ -37,8 +38,11 @@ struct ContentView: View
             
             Spacer()
             
-            ProgressView()
-                .hidden()
+            if isLoading {
+                ProgressView()
+            } else {
+                ProgressView().hidden()
+            }
             
             Spacer()
             
@@ -58,7 +62,8 @@ struct ContentView: View
                     .lineLimit(1)
                     .truncationMode(.tail)
                 }
-                Toggle("Show advanced options", isOn: $showingAdvancedOptions.animation())
+                Toggle("Show advanced options", isOn: $showingAdvancedOptions)
+                    .animation(.default, value: showingAdvancedOptions)
                 if showingAdvancedOptions {
                     Section(header: Text("Selected scopes (all possible scopes are displayed)")) {
                         Toggle("openid", isOn: $scopeOpenid)
@@ -85,9 +90,13 @@ struct ContentView: View
                 }
                 Section {
                     Button(
-                        action: {sendHttpPost()},
+                        action: {
+                            Task {
+                                await sendHttpPost()
+                            }
+                        },
                         label: { Text("Login (gematik IDP)")})
-                    .disabled(!loginEnabled)
+                    .disabled(!loginEnabled || isLoading)
                 }
             }
             
@@ -104,7 +113,10 @@ struct ContentView: View
         }
     }
     
-    func sendHttpPost() {
+    func sendHttpPost() async {
+        isLoading = true
+        defer { isLoading = false }
+        
         var scopes: [String] = []
         if(scopeOpenid) {
             scopes.append("openid")
@@ -141,7 +153,7 @@ struct ContentView: View
             gematik_override_health_id: overrideHealthIdText
         )
         
-        r.makeRequest(requestData: requestData)
+        await r.makeRequest(requestData: requestData)
         
         
         
@@ -170,17 +182,17 @@ struct ContentView: View
     ContentView()
 }
 
-class LoginTask : NSObject {
-    var session: URLSession?
+class LoginTask : NSObject, URLSessionDelegate, URLSessionTaskDelegate {
+    var session: URLSession!
     
     override init() {
         super.init()
-        session = URLSession(configuration: .default, delegate: self,	 delegateQueue: nil)
+        session = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
     }
     
-    func makeRequest(requestData: LoginRequest) {
+    func makeRequest(requestData: LoginRequest) async {
         print("Execute demo login");
-        let jsonData = try? JSONEncoder().encode(requestData)
+        guard let jsonData = try? JSONEncoder().encode(requestData) else { return }
         
         // create post request
         let url = URL(string: "https://mimoto-test.pie.azuma-health.tech/api/demo/login")!
@@ -190,32 +202,27 @@ class LoginTask : NSObject {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        let task = session?.dataTask(with: request) { data, response, error in
-            if let response = response as? HTTPURLResponse {
-                guard let data = data, error == nil else {
-                    print(error?.localizedDescription ?? "No data")
-                    return
-                }
-                if response.statusCode == 200 {
+        do {
+            let (data, response) = try await session.data(for: request)
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 200 {
                     print("Success")
-                    
-                    let responseData = try? JSONDecoder().decode(
-                        LoginResponse.self,
-                        from: data
-                    )
-                    let responseUrl = responseData?.url
-                    let locationUrl = URL(string: responseUrl!)!
-                    DispatchQueue.main.async {
-                        Task {
-                            await UIApplication.shared.open (locationUrl)
-                        }
+                    if let responseData = try? JSONDecoder().decode(LoginResponse.self, from: data),
+                       let locationUrl = URL(string: responseData.url) {
+                        await UIApplication.shared.open(locationUrl)
                     }
-                    return;
+                } else {
+                    print("Failed with status \(httpResponse.statusCode)")
                 }
             }
-            print("Failed")
+        } catch {
+            print(error.localizedDescription)
         }
-        task?.resume() // <- otherwise your network request won't be started
+    }
+    
+    func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) {
+        // Stops the redirection, and returns (internally) the response body.
+        completionHandler(nil)
     }
 }
 
@@ -231,11 +238,4 @@ struct LoginRequest: Codable {
     var gematik_selected_scopes: [String]
     var gematik_scope_decline_mode: String
     var gematik_override_health_id: String
-}
-
-extension LoginTask: URLSessionDelegate, URLSessionTaskDelegate {
-    func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) {
-        // Stops the redirection, and returns (internally) the response body.
-        completionHandler(nil)
-    }
 }

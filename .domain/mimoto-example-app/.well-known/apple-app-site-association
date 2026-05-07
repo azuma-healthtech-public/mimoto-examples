@@ -46,5 +46,8 @@
                 ]
             } 
         ]
-    }
+    },
+	"webcredentials": {
+		"apps": ["CRWTAA276J.com.doa.example.diga.rn.ios", "CRWTAA276J.com.doa.example.diga.ios"]
+	}
 }

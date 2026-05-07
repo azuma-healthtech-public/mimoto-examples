@@ -284,7 +284,7 @@
 				CODE_SIGN_ENTITLEMENTS = "mimoto.example.gematikmock/ios-gematik-mock.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"mimoto.example.gematikmock/Preview Content\"";
 				DEVELOPMENT_TEAM = CRWTAA276J;
 				ENABLE_PREVIEWS = YES;
@@ -299,7 +299,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mimoto.example.gematikmock.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -317,7 +317,7 @@
 				CODE_SIGN_ENTITLEMENTS = "mimoto.example.gematikmock/ios-gematik-mock.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"mimoto.example.gematikmock/Preview Content\"";
 				DEVELOPMENT_TEAM = CRWTAA276J;
 				ENABLE_PREVIEWS = YES;
@@ -332,7 +332,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mimoto.example.gematikmock.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

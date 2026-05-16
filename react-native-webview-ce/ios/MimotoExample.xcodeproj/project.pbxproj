@@ -271,6 +271,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CRWTAA276J;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MimotoExample/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Mimoto RN WebView Example";
@@ -303,6 +304,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MimotoExample/MimotoExample.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CRWTAA276J;
 				INFOPLIST_FILE = MimotoExample/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Mimoto RN WebView Example";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.5;

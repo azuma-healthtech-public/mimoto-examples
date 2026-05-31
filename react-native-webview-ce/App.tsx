@@ -21,7 +21,7 @@ function App(): React.JSX.Element {
             {
               name: 'LoginIdp',
               params: {
-                deepLink: `https://mimoto-example-app.azuma-health.tech${path}`,
+                deepLink: `https://mimoto-example-app.azuma-health.tech/rn-webview-ce${path}`,
               },
             },
           ],

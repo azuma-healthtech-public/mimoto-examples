@@ -60,10 +60,10 @@ export function LoginIdp({route, navigation}) {
       }
     };
 
-    if (stage === Stage.None) {
+    if (stage === Stage.None && !deepLink) {
       startAuth();
     }
-  }, [stage]);
+  }, [stage, deepLink]);
 
   // Stage.CodeExchangeRequest
   React.useEffect(() => {
@@ -88,7 +88,7 @@ export function LoginIdp({route, navigation}) {
       }
     };
 
-    if (deepLink && stage === Stage.WaitingForCode) {
+    if (deepLink && (stage === Stage.WaitingForCode || stage === Stage.None)) {
       exchangeCodes();
     }
   }, [handleTokenReceived, navigation, deepLink, stage]);
@@ -112,9 +112,7 @@ export function LoginIdp({route, navigation}) {
     <>
       {stage !== Stage.None && stage !== Stage.AuthRequest && (
         <View style={styles.container}>
-          {error && <Text>{error}</Text>}
-
-          <ActivityIndicator size={'large'} />
+          {error ? <Text style={{ color: 'red', textAlign: 'center', margin: 20 }}>{error}</Text> : <ActivityIndicator size={'large'} />}
 
           <Button onPress={() => navigation.replace('Home')}>
             Cancel Login

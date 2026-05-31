@@ -1,6 +1,6 @@
 export const scopes = 'openid urn:telematik:versicherter urn:telematik:email';
 export const redirectUrl =
-  'https://mimoto-example-app.azuma-health.tech/app/ce';
+  'https://mimoto-example-app.azuma-health.tech/rn-ce/code/ce';
 
 export const metadataTU = {
   title: '(TU): Using gematik Authenticator',

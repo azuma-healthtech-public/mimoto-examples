@@ -21,10 +21,13 @@ enum Stage {
 export function LoginIdp({route, navigation}) {
   const [stage, setStage] = useState<Stage>(Stage.None);
   const [error, setError] = useState<String>();
-  const {issuer, deepLink} = route.params;
+  const {issuer, deepLink} = route.params || {};
+
+  console.log(`LoginIdp rendered. Stage: ${stage}, deepLink: ${deepLink}`);
 
   const handleTokenReceived = useCallback(
     (result: TokenResponse) => {
+      console.log('LoginIdp: handleTokenReceived called.');
       const user = decodeToken(result);
       const resetAction = CommonActions.reset({
         index: 0,
@@ -38,7 +41,7 @@ export function LoginIdp({route, navigation}) {
   // Stage.AuthRequest
   React.useEffect(() => {
     const startAuth = async () => {
-      console.log('Starting auth');
+      console.log(`LoginIdp: Starting auth. Issuer: ${issuer}`);
       try {
         getCurrentData().pkceClient.reset(); // ensure we always use new state/pkce values
 
@@ -61,18 +64,20 @@ export function LoginIdp({route, navigation}) {
       }
     };
 
-    if (stage !== Stage.None) {
+    if (stage !== Stage.None || deepLink) {
+      console.log(`LoginIdp: Skipping startAuth. Stage is ${stage}, deepLink is ${!!deepLink}`);
       return;
     }
 
+    console.log(`LoginIdp: Calling startAuth now.`);
     startAuth();
-  }, [handleTokenReceived, issuer, stage]);
+  }, [handleTokenReceived, issuer, stage, deepLink]);
 
   // Stage.CodeExchangeRequest
   React.useEffect(() => {
     const exchangeCodes = async () => {
       setStage(Stage.CodeExchangeRequest);
-      console.log('Starting code exchange');
+      console.log(`LoginIdp: Starting code exchange with deepLink: ${deepLink}`);
 
       try {
         const result = await executeCodeExchange(
@@ -80,27 +85,29 @@ export function LoginIdp({route, navigation}) {
           deepLink,
         );
         if (result) {
-          console.log('Code exchange successful');
+          console.log('LoginIdp: Code exchange successful', result);
           handleTokenReceived(result);
         } else {
+          console.log('LoginIdp: Code exchange failed (result is null or undefined)');
           setError('Could not authorize. Please try again later...');
         }
       } catch (e) {
-        console.log(e);
+        console.log('LoginIdp: Error during exchangeCodes:', e);
         setError('Could not authorize. Please try again later...');
       }
     };
 
-    if (deepLink && stage === Stage.AuthRequest) {
+    if (deepLink && (stage === Stage.AuthRequest || stage === Stage.None)) {
+      console.log(`LoginIdp: Calling exchangeCodes. deepLink is present, stage is ${stage}.`);
       exchangeCodes();
+    } else {
+      console.log(`LoginIdp: Skipping exchangeCodes. deepLink: ${!!deepLink}, stage: ${stage}`);
     }
   }, [handleTokenReceived, navigation, deepLink, stage]);
 
   return (
     <View style={styles.container}>
-      {error && <Text>{error}</Text>}
-
-      <ActivityIndicator size={'large'} />
+      {error ? <Text style={{ color: 'red', textAlign: 'center', margin: 20 }}>{error}</Text> : <ActivityIndicator size={'large'} />}
 
       <Button onPress={() => navigation.replace('Home')}>Cancel Login</Button>
     </View>

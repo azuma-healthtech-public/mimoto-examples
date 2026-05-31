@@ -7,6 +7,7 @@ import {Card} from '@rneui/base';
 export function Welcome({route, navigation}) {
   const {user} = route.params;
   const [expanded, setExpanded] = React.useState(false);
+  const [expandedRaw, setExpandedRaw] = React.useState(false);
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
       <>
@@ -73,6 +74,19 @@ export function Welcome({route, navigation}) {
                 ext-mimoto-original-sub-unique:{' '}
                 {user.claims['ext-mimoto-original-sub-unique']}
               </Text>
+            </ListItem.Accordion>
+
+            <ListItem.Accordion
+              content={
+                <ListItem.Content>
+                  <ListItem.Title>Raw ID-Token</ListItem.Title>
+                </ListItem.Content>
+              }
+              isExpanded={expandedRaw}
+              onPress={() => {
+                setExpandedRaw(!expandedRaw);
+              }}>
+              <Text selectable={true} style={{fontSize: 12, padding: 10, flexWrap: 'wrap'}}>{user.id_token}</Text>
             </ListItem.Accordion>
           </Card>
 

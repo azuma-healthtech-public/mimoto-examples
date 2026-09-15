@@ -9,6 +9,13 @@
                 ]
             }, {
                 "appIDs": [
+                    "CRWTAA276J.com.doa.example.devicebinding.flutter"
+                ],
+                "paths": [
+                    "/rn-ce/code/ce"
+                ]
+            }, {
+                "appIDs": [
                     "CRWTAA276J.com.mimoto.example.diga.rn.web.ios"
                 ],
                 "paths": [
@@ -48,6 +55,6 @@
         ]
     },
 	"webcredentials": {
-		"apps": ["CRWTAA276J.com.doa.example.diga.rn.ios", "CRWTAA276J.com.doa.example.diga.ios"]
+		"apps": ["CRWTAA276J.com.doa.example.diga.rn.ios", "CRWTAA276J.com.doa.example.diga.ios", "CRWTAA276J.com.doa.example.devicebinding.flutter"]
 	}
 }
